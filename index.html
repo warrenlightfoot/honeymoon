@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Our Honeymoon">
 <title>The Honeymoon</title>
 <meta name="description" content="Warren &amp; Abby Lightfoot · Uluwatu and Bangkok · April 27 – May 8, 2027. Day by day itinerary and budget.">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" href="appletouchicon.png">
 <meta property="og:title" content="The Honeymoon · WBL &amp; AAL">
 <meta property="og:description" content="Uluwatu and Bangkok · April 27 – May 8, 2027.">
 <meta property="og:type" content="website">
@@ -330,7 +330,7 @@ const days = [
     hotelNight: 'Night 2 of 4',
     headline: 'First Real Day',
     details:
-      "Wake up and actually see where you are. Slow breakfast on the villa terrace. Beach club day, either Sundays Beach Club at Ungasan or Karma Beach. Lounge, swim, eat seafood with your toes in the sand. Optional beginner surf lesson at Padang Padang, the wave is forgiving. Back to the resort for a late afternoon spa treatment. Sunset cocktails at Single Fin over the Uluwatu break.",
+      "Wake up and actually see where you are. Slow breakfast on the villa terrace. Beach club day, either Sundays Beach Club at Ungasan or Karma Beach. Lounge, swim, eat seafood with your toes in the sand. Optional beginner surf lesson at Padang Padang, the wave is forgiving. Back to the resort for a mid afternoon spa treatment. Then Single Fin for sunset. Friday is the quiet version, no DJ session and a 10pm close, but sunset is around 6:05 and the cliff edge seats go long before that, so reserve a table and be there by 5. Back to the resort after for pizza at Cliff Bar, their wood oven Mediterranean spot on the cliff edge. Kitchen closes around 9, so do not dawdle.",
   },
   {
     day: 5,
@@ -344,7 +344,7 @@ const days = [
     hotelNight: 'Night 3 of 4',
     headline: 'Uluwatu Temple at Sunset',
     details:
-      "Pool morning, late lunch. Late afternoon head to Pura Luhur Uluwatu, an 11th-century sea temple on a 230-foot cliff. Walk the grounds before sunset and watch your sunglasses, the monkeys are professionals. At 6pm take your seat for the Kecak Fire Dance: 60+ men in a circle chanting around a fire as a Ramayana drama plays out and the sun drops into the ocean behind the temple. Buy front-row tickets in advance. Dinner after at El Kabron or back at Cliff House.",
+      "Pool morning, late lunch. Late afternoon head to Pura Luhur Uluwatu, an 11th-century sea temple on a 230-foot cliff. Walk the grounds before sunset and watch your sunglasses, the monkeys are professionals. At 6pm take your seat for the Kecak Fire Dance: 60+ men in a circle chanting around a fire as a Ramayana drama plays out and the sun drops into the ocean behind the temple. Buy front-row tickets in advance. Dinner after at El Kabron. Saturday is also one of the two nights Rocka Edge runs its omakase chef's table, if you would rather eat at the resort.",
   },
   {
     day: 6,
@@ -358,7 +358,7 @@ const days = [
     hotelNight: 'Night 4 of 4',
     headline: 'Rot Day',
     details:
-      "Pure decompression, no agenda. Breakfast in the villa, swim in your own pool, couples treatment at the Six Senses spa including the Alchemy Bar where you blend your own scrub. Long lazy lunch at the Sundeck. Cliff-edge cabana all afternoon. Final Bali dinner at Cliff House, book the terrace, watch the sun go down over the Indian Ocean. Pack tonight.",
+      "Pure decompression, no agenda. Breakfast in the villa, swim in your own pool, couples treatment at the Six Senses spa including the Alchemy Bar where you blend your own scrub. Long lazy lunch at the Sundeck. Cabana at the main cliff pool all afternoon, they are free and first come, and the pools close at 7. Final Bali dinner at Rocka, book the ocean facing terrace, watch the sun go down over the Indian Ocean. Pack tonight.",
   },
   {
     day: 7,
@@ -450,41 +450,212 @@ const days = [
 // ─────────────────────────────────────────────────────────────────────────
 
 const photos = {
-  sixSenses: {
-    src: 'six-senses.jpg',
+  // ── travel ──────────────────────────────────────────────────────────────
+  alMourjan: {
+    src: 'al-mourjan-business-lounge.jpg',
     tier: 'hero',
-    ratio: '1.6',
+    ratio: '1.72',
+    alt: 'Staircase down into the Al Mourjan lounge at Hamad International',
+    caption: 'Al Mourjan, Doha \u00b7 the alternative to six hours at a gate',
+  },
+
+  // ── uluwatu ─────────────────────────────────────────────────────────────
+  sixSenses: {
+    src: 'sixsenses.jpg',
+    tier: 'hero',
+    ratio: '1.63',
     caption: 'Six Senses Uluwatu, terraced down the limestone above the Indian Ocean',
   },
   villaInterior: {
-    src: 'villa-interior.jpg',
+    src: 'villainterior.jpg',
     tier: 'hero',
-    ratio: '1.6',
-    alt: 'Open-air living pavilion under a peaked teak roof, teal cushions, bed beyond',
-    caption: 'Inside the villa · the living pavilion opens on both sides, bed behind the mosquito netting',
+    ratio: '1.59',
+    alt: 'Open air living pavilion under a peaked teak roof, teal cushions, bed beyond',
+    caption: 'Inside the villa \u00b7 the living pavilion opens on both sides, bed behind the mosquito netting',
   },
   baliMap: {
-    src: 'bali-map.jpg',
+    src: 'balimap.jpg',
     tier: 'plate',
     label: 'Where you land',
-    ratio: '1.27',
+    ratio: '1.24',
     alt: 'Satellite map of Bali, airport in the south, Bukit Peninsula below it',
     caption: 'Denpasar sits at the bottom of the island. Everything you do is on the Bukit, the limestone peninsula just south of the airport.',
   },
+  villaPlan: {
+    src: 'villaplan.jpg',
+    tier: 'plate',
+    label: 'Villa plan',
+    ratio: '1.8',
+    caption: 'Your One Bedroom Cliff Pool Villa \u00b7 21 sq m private pool, outdoor shower, daybed',
+  },
+  baliBreakfast: {
+    src: 'bali_breakfast.jpg',
+    tier: 'spot',
+    alt: 'Breakfast spread on a villa terrace above the ocean',
+    caption: 'Breakfast on the terrace',
+  },
+  sundaysBeachClub: {
+    src: 'Sundays_Beach_Club_jpg.webp',
+    tier: 'spot',
+    alt: 'Bamboo cabana with white curtains and bean bags looking out to the surf',
+    caption: 'Sundays Beach Club \u00b7 cabana on the sand',
+  },
+  spaSixSenses: {
+    src: 'spa_six_senses.jpg',
+    tier: 'spot',
+    alt: 'Therapist preparing a treatment in a teak spa room',
+    caption: 'Six Senses Spa',
+  },
+  singleFin: {
+    src: 'single_fin.jpg',
+    tier: 'spot',
+    alt: 'Clifftop pool deck above the Uluwatu surf break',
+    caption: 'Single Fin \u00b7 above the break',
+  },
+  cliffBar: {
+    src: 'cliff_bar.jpg',
+    tier: 'spot',
+    alt: 'Tables on a deck at the cliff edge at sunset',
+    caption: 'Cliff Bar \u00b7 pizza at the edge',
+  },
+  puraLuhur: {
+    src: 'pura_luhur.jpg',
+    tier: 'spot',
+    alt: 'Uluwatu temple on a limestone headland above the surf',
+    caption: 'Pura Luhur Uluwatu',
+  },
+  kecak: {
+    src: 'uluwatu_fire_dance.jpg',
+    tier: 'spot',
+    alt: 'Dancers with torches performing the Kecak fire dance at dusk',
+    caption: 'Kecak Fire Dance',
+  },
+  elKabron: {
+    src: 'el-kabron-bali.jpg',
+    tier: 'spot',
+    alt: 'Clifftop restaurant tables looking west over the ocean at sunset',
+    caption: 'El Kabron \u00b7 clifftop Spanish',
+  },
+  sixSensesSpa2: {
+    src: 'six_senses_spa_part_2.jpg',
+    tier: 'spot',
+    alt: 'Couples treatment room at the Six Senses spa',
+    caption: 'The couples treatment',
+  },
+  sundeck: {
+    src: 'sundeck_six_senses.jpg',
+    tier: 'spot',
+    alt: 'Infinity pool and loungers on the cliff above the Indian Ocean',
+    caption: 'The main cliff pool \u00b7 cabanas are free',
+  },
+  rocka: {
+    src: 'rocka.jpg',
+    tier: 'spot',
+    alt: 'Open sided dining room with ocean beyond',
+    caption: 'Rocka \u00b7 book the terrace',
+  },
+
+  // ── bangkok ─────────────────────────────────────────────────────────────
+  mandarinOriental: {
+    src: 'mandarin-oriental.jpg',
+    tier: 'hero',
+    ratio: '1.5',
+    alt: 'Riverside terrace of the Mandarin Oriental with a boat passing on the Chao Phraya',
+    caption: 'Mandarin Oriental Bangkok \u00b7 on the river since 1876',
+  },
+  mandarinPool: {
+    src: 'mandarin_pool.jpg',
+    tier: 'hero',
+    ratio: '1.78',
+    alt: 'Pool flanked by Thai pavilions with the Bangkok skyline behind',
+    caption: 'The pool \u00b7 where you sit out the afternoon heat',
+  },
   bangkokMap: {
-    src: 'bangkok-map.jpg',
+    src: 'bangkokmap.jpg',
     tier: 'plate',
     label: 'The city',
-    ratio: '1.2',
+    ratio: '1.21',
     alt: 'Satellite map of Bangkok, the river curving through the middle, Suvarnabhumi to the east',
     caption: 'Suvarnabhumi is out east, about 45 minutes in. The hotel sits on the outside of the river bend, west of centre.',
   },
-  villaPlan: {
-    src: 'villa-plan.jpg',
-    tier: 'plate',
-    label: 'Villa plan',
-    ratio: '1.81',
-    caption: 'Your One Bedroom Cliff Pool Villa · 21 sq m private pool, outdoor shower, daybed',
+  bambooBar: {
+    src: 'bambo_bar.jpg',
+    tier: 'spot',
+    alt: 'Dim jazz bar with rattan seating',
+    caption: 'The Bamboo Bar \u00b7 jazz since 1953',
+  },
+  grandPalace: {
+    src: 'grand_palace.jpg',
+    tier: 'spot',
+    alt: 'Gilded spires of the Grand Palace complex',
+    caption: 'Grand Palace \u00b7 be there at 8',
+  },
+  recliningBuddha: {
+    src: 'recling_buddha.jpg',
+    tier: 'spot',
+    alt: 'The gold Reclining Buddha filling its hall at Wat Pho',
+    caption: 'Wat Pho \u00b7 150 feet of gold leaf',
+  },
+  watArun: {
+    src: 'wat_arun.jpg',
+    tier: 'spot',
+    alt: 'Wat Arun rising over the Chao Phraya at golden hour',
+    caption: 'Wat Arun, across the water',
+  },
+  sorn: {
+    src: 'sorn.jpg',
+    tier: 'spot',
+    alt: 'Candlelit terrace tables with the Bangkok skyline behind',
+    caption: 'Sorn \u00b7 book months ahead',
+  },
+  klongs: {
+    src: 'klongs.png',
+    tier: 'spot',
+    alt: 'Longtail boat moored between stilt houses on a Thonburi canal',
+    caption: 'The Thonburi klongs by longtail',
+  },
+  blueElephant: {
+    src: 'blue_elephant.jpg',
+    tier: 'spot',
+    alt: 'Teak dining room of the Blue Elephant cooking school',
+    caption: 'Blue Elephant \u00b7 market, then you cook',
+  },
+  yaowarat: {
+    src: 'yaowarat.jpg',
+    tier: 'spot',
+    alt: 'Neon signs stacked over the traffic on Yaowarat Road at dusk',
+    caption: 'Yaowarat \u00b7 best food night of the trip',
+  },
+  orientalSpa: {
+    src: 'oriental_spa.jpg',
+    tier: 'spot',
+    alt: 'Lily pond courtyard at the Oriental Spa',
+    caption: 'The Oriental Spa, across the river',
+  },
+  jimThompson: {
+    src: 'jim_thompson.jpg',
+    tier: 'spot',
+    alt: 'Teak interior of the Jim Thompson House with a chandelier and red ceiling',
+    caption: 'Jim Thompson House',
+  },
+  vertigo: {
+    src: 'vertigo.jpg',
+    tier: 'spot',
+    alt: 'Rooftop bar and dining terrace above the city at dusk',
+    caption: 'Vertigo \u00b7 61 floors up',
+  },
+  nahm: {
+    src: 'nahm.jpeg',
+    tier: 'spot',
+    alt: 'Candlelit restaurant terrace among high rises',
+    caption: 'Nahm, Paste, or Gaggan',
+  },
+  chatuchak: {
+    src: 'chatuchak.jpg',
+    tier: 'hero',
+    ratio: '1.5',
+    alt: 'Thousands of coloured market stall roofs lit at dusk under the Bangkok skyline',
+    caption: 'Chatuchak \u00b7 last shot at anything you missed',
   },
 };
 
@@ -505,8 +676,16 @@ const photos = {
 // `src` is just the filename. Drop the image in the same folder as index.html.
 // Maps day number -> photo key, or an array of keys, in the order they should appear.
 const dayPhotos = {
+  2: ['alMourjan'],
   3: ['sixSenses', 'villaInterior', 'baliMap', 'villaPlan'],
-  7: ['bangkokMap'],
+  4: ['baliBreakfast', 'sundaysBeachClub', 'spaSixSenses', 'singleFin', 'cliffBar'],
+  5: ['puraLuhur', 'kecak', 'elKabron'],
+  6: ['sixSensesSpa2', 'sundeck', 'rocka'],
+  7: ['mandarinOriental', 'mandarinPool', 'bangkokMap', 'bambooBar'],
+  8: ['grandPalace', 'recliningBuddha', 'watArun', 'sorn'],
+  9: ['klongs', 'blueElephant', 'yaowarat'],
+  10: ['orientalSpa', 'jimThompson', 'vertigo', 'nahm'],
+  11: ['chatuchak'],
 };
 
 const schedules = {
@@ -534,12 +713,13 @@ const schedules = {
   4: [
     { time: '8:30 AM', title: 'Breakfast on the villa terrace', dur: '1h 15m', note: 'First real look at where you are' },
     { time: '10:00 AM', title: 'Drive down the peninsula', dur: '20m', kind: 'transit' },
-    { time: '10:30 AM', title: 'Sundays Beach Club', map: 'Sundays Beach Club, Uluwatu', dur: '5h', note: 'Cabana, funicular down to the sand, seafood lunch', key: true },
-    { time: '3:30 PM', title: 'Back up the hill', dur: '20m', kind: 'transit' },
-    { time: '4:00 PM', title: 'Six Senses Spa', map: 'Six Senses Uluwatu, Bali', dur: '1h 30m', key: true },
-    { time: '5:45 PM', title: 'Over to the point', dur: '15m', kind: 'transit' },
-    { time: '6:00 PM', title: 'Single Fin', map: 'Single Fin, Uluwatu', dur: '1h 30m', note: 'Sunset over the Uluwatu break', key: true },
-    { time: '8:00 PM', title: 'Dinner', dur: '2h' },
+    { time: '10:30 AM', title: 'Sundays Beach Club', map: 'Sundays Beach Club, Uluwatu', dur: '4h', note: 'Cabana, funicular down to the sand, seafood lunch', key: true },
+    { time: '2:30 PM', title: 'Back up the hill', dur: '20m', kind: 'transit' },
+    { time: '2:50 PM', title: 'Six Senses Spa', map: 'Six Senses Uluwatu, Bali', dur: '1h 30m', key: true },
+    { time: '4:30 PM', title: 'Over to the point', dur: '20m', kind: 'transit' },
+    { time: '5:00 PM', title: 'Single Fin', map: 'Single Fin, Uluwatu', dur: '2h 15m', note: 'Reserve a table. Sunset is about 6:05 and seats go early.', key: true },
+    { time: '7:15 PM', title: 'Back to the resort', dur: '20m', kind: 'transit' },
+    { time: '7:45 PM', title: 'Cliff Bar', map: 'Cliff Bar, Six Senses Uluwatu', dur: '1h 15m', note: 'Wood oven pizza and pasta. Kitchen closes around 9.', key: true },
   ],
   5: [
     { time: '9:00 AM', title: 'Villa pool, slow morning', dur: '3h 30m' },
@@ -549,14 +729,14 @@ const schedules = {
     { time: '4:30 PM', title: 'Pura Luhur Uluwatu', map: 'Uluwatu Temple, Bali', dur: '1h 30m', note: 'Watch your sunglasses, the monkeys are professionals', key: true },
     { time: '6:00 PM', title: 'Kecak Fire Dance', map: 'Uluwatu Temple, Bali', dur: '1h', note: 'Front-row tickets, arrive early for seats' },
     { time: '7:20 PM', title: 'Drive to dinner', dur: '20m', kind: 'transit' },
-    { time: '7:45 PM', title: 'El Kabron', map: 'El Kabron, Bali', dur: '2h 15m', note: 'Clifftop Spanish. Or back to Cliff House.', key: true },
+    { time: '7:45 PM', title: 'El Kabron', map: 'El Kabron, Bali', dur: '2h 15m', note: 'Clifftop Spanish. Or Rocka Edge omakase, Fri and Sat only.', key: true },
   ],
   6: [
     { time: '9:00 AM', title: 'Breakfast in the villa', dur: '1h 30m' },
     { time: '10:30 AM', title: 'Private pool, no agenda', dur: '2h 30m' },
     { time: '1:00 PM', title: 'Six Senses Spa', map: 'Six Senses Uluwatu, Bali', dur: '2h 30m', note: 'Couples treatment plus the Alchemy Bar scrub blend', key: true },
-    { time: '4:00 PM', title: 'Cliff-edge cabana', dur: '2h 30m' },
-    { time: '6:30 PM', title: 'Cliff House', map: 'Six Senses Uluwatu, Bali', dur: '2h 30m', note: 'Book the terrace. Last Bali sunset.', key: true },
+    { time: '4:00 PM', title: 'Cabana at the main cliff pool', dur: '2h 30m', note: 'Free, first come. Pools close at 7.' },
+    { time: '6:30 PM', title: 'Rocka', map: 'Rocka Restaurant, Six Senses Uluwatu', dur: '2h 30m', note: 'Book the ocean facing terrace. Last Bali sunset.', key: true },
     { time: '9:00 PM', title: 'Pack for Bangkok', dur: '45m' },
   ],
   7: [
@@ -698,7 +878,7 @@ const budgetData = {
           bookBy: 'Pay as you go · street food is $2–5/dish',
         },
         {
-          label: 'Splurge dinners (Sorn, Gaggan, Cliff House, Le Du)',
+          label: 'Splurge dinners (Sorn, Gaggan, Rocka, Le Du)',
           cost: 920,
           bookBy: 'Sorn/Gaggan need 2–3 months · others 2–4 weeks',
         },
