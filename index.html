@@ -99,8 +99,8 @@ a{color:inherit}
 [data-leg="bangkok"]{--acc:var(--bangkok);--deep:var(--bangkok-deep);--tint-leg:var(--bangkok-tint)}
 
 /* tabs */
-.tabs{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--sand) 84%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding-top:env(safe-area-inset-top)}
-@supports not (background:color-mix(in srgb,red 50%,blue)){.tabs{background:rgba(243,240,230,.86)}}
+.tabs{position:sticky;top:0;z-index:50;background:var(--sand);padding-top:env(safe-area-inset-top)}
+.tabs::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:200px;background:var(--sand)}
 .tabs-inner{max-width:960px;margin:0 auto;padding:0 var(--pad);display:flex;gap:28px;height:56px;align-items:center}
 @media(min-width:768px){.tabs-inner{gap:48px;height:64px}}
 .tab{background:none;border:none;padding:8px 0;font-family:'Fraunces',Georgia,serif;font-size:16px;letter-spacing:.02em;color:var(--faint);cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
@@ -320,7 +320,8 @@ footer{border-top:1px solid var(--line-2);padding:24px 0 64px;font-size:12.5px;c
 .strip{position:fixed;left:0;right:0;bottom:0;z-index:60;background:color-mix(in srgb,var(--sand) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line-2);padding:8px 0 calc(8px + env(safe-area-inset-bottom));transform:translateY(0);transition:transform 300ms ease}
 @supports not (background:color-mix(in srgb,red 50%,blue)){.strip{background:rgba(243,240,230,.92)}}
 .strip[hidden]{display:none}
-.strip-in{display:flex;gap:6px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip-in{display:flex;gap:6px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:960px;margin:0 auto}
+.strip-in .chip:first-child{margin-left:auto}.strip-in .chip:last-child{margin-right:auto}
 .strip-in::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;border:1px solid transparent;background:none;border-radius:2px;padding:6px 9px 5px;font-family:'Outfit',sans-serif;color:var(--muted);cursor:pointer;text-align:center;min-width:46px;-webkit-tap-highlight-color:transparent}
 .chip .c1{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em}
@@ -409,25 +410,25 @@ const days = [
     day: 3, dayName: 'Thursday', dateShort: 'Apr 29', date: '2027-04-29', leg: 'uluwatu', tz: TZ.bali, sun: 'ulu',
     vibe: 'Arrival', location: 'Uluwatu, Bali', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 1 of 4',
     headline: 'To the Cliffs',
-    details: 'Wheels down at 5:35 PM. With the eVOA done and both QR codes on your phone you use the e gates and skip the visa line, which at this hour can run an hour. Meet the hotel car and head south to the Bukit as the sun goes down over your right shoulder. Villa by 7:15. It is dark, which is fine: the reveal is better in the morning anyway. A light dinner at Rocka, then sleep. You have been traveling about 30 hours and it is Thursday night in Bali. Sleeping tonight puts you on local time immediately, and tomorrow starts early on purpose.',
+    details: 'Wheels down at 5:35 PM. With the eVOA done and both QR codes on your phone you use the e gates and skip the visa line, which at this hour can run an hour. Meet the hotel car and head south to the Bukit as the sun goes down over your right shoulder. Villa by 7:15. It is dark, which is fine: the reveal is better in the morning anyway. A light dinner at Rocka, then sleep. You have been traveling about 30 hours and it is Thursday night in Bali. Sleeping tonight puts you on local time. Tomorrow is deliberately gentle; the boat waits for Saturday, when you have had a real night of sleep.',
   },
   {
     day: 4, dayName: 'Friday', dateShort: 'Apr 30', date: '2027-04-30', leg: 'uluwatu', tz: TZ.bali, sun: 'ulu',
-    vibe: 'Manta Day', location: 'Nusa Penida, then Uluwatu', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 2 of 4',
-    headline: 'Mantas',
-    details: 'Jet lag is the alarm clock: you will be awake at 5 anyway, so use it. Car to Sanur at 6:30, private speedboat at 7:30. Manta Point first, on the southwest coast of Nusa Penida, while the water is calm and empty. It is a cleaning station, so the mantas come to you: hang at the surface, let them pass underneath, no chasing, no touching. Then Crystal Bay for coral and the wall, lunch on the island, and back across by mid afternoon. Sightings run very high in dry season but these are wild animals; going first is what stacks the odds. Reef safe sunscreen, rash guards, a dry bag, motion tablets for the crossing. Home by 4:45, rinse the salt off, and let the sunset come to you at Ulu Cliffhouse, five minutes away. Pizza at Cliff Bar and an early night. You earned it.',
+    vibe: 'Beach + Temple', location: 'Uluwatu, Bali', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 2 of 4',
+    headline: 'Sundays, then Fire',
+    details: 'First full day, kept gentle on purpose after 30 hours in transit. Slow breakfast, then down the peninsula to Sundays Beach Club at Ungasan: funicular to the sand, cabana reserved a week or more ahead because it is Golden Week and the whole peninsula is full. Lounge, swim, seafood lunch with sand on your feet, out by 2:30. Rest. Driver at 4:15 to Pura Luhur Uluwatu, an eleventh century sea temple on a 230 foot cliff. Walk the wall before sunset and watch your sunglasses, the monkeys are professionals. At 6 take your pre bought seats for the Kecak: sixty men chanting in a circle around fire while the Ramayana plays out and the sun drops into the ocean behind the temple. Back up the hill for Rocka Edge, the omakase counter at the resort, Fridays and Saturdays only. Then bed, and early: the car to the boat leaves at 6:30.',
   },
   {
     day: 5, dayName: 'Saturday', dateShort: 'May 1', date: '2027-05-01', leg: 'uluwatu', tz: TZ.bali, sun: 'ulu',
-    vibe: 'Beach + Temple', location: 'Uluwatu, Bali', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 3 of 4',
-    headline: 'Sundays, then Fire',
-    details: 'Slow breakfast, then down the peninsula to Sundays Beach Club at Ungasan: funicular to the sand, cabana reserved a week or more ahead because May 1 is a holiday in both Indonesia and China and the whole peninsula knows it. Lounge, swim, seafood lunch with sand on your feet, out by 2:30. Rest. Driver at 4:15 to Pura Luhur Uluwatu, an eleventh century sea temple on a 230 foot cliff. Walk the wall before sunset and watch your sunglasses, the monkeys are professionals. At 6 take your pre bought seats for the Kecak: sixty men chanting in a circle around fire while the Ramayana plays out and the sun drops into the ocean behind the temple. Back up the hill for Rocka Edge, the omakase counter at the resort, Fridays and Saturdays only, then a private screening at Cinema Under the Stars if you asked for it. Bed under a lot of sky.',
+    vibe: 'Manta Day', location: 'Nusa Penida, then Uluwatu', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 3 of 4',
+    headline: 'Mantas',
+    details: 'The big day, on legs that have had a full night of sleep. Jet lag still has you up at 5, so use it. Car to Sanur at 6:30, private speedboat at 7:30. Manta Point first, on the southwest coast of Nusa Penida, while the water is calm and empty. It is a cleaning station, so the mantas come to you: hang at the surface, let them pass underneath, no chasing, no touching. Then Crystal Bay for coral and the wall, lunch on the island, and back across by mid afternoon. Sightings run very high in dry season but these are wild animals; going first is what stacks the odds, and May 1 being a holiday here changes nothing on the water. Reef safe sunscreen, rash guards, a dry bag, motion tablets for the crossing. Home by 4:45, rinse the salt off, and let the sunset come to you at Ulu Cliffhouse, five minutes away; it is a Saturday, so book the table. Pizza at Cliff Bar and an early night. You earned it.',
   },
   {
     day: 6, dayName: 'Sunday', dateShort: 'May 2', date: '2027-05-02', leg: 'uluwatu', tz: TZ.bali, sun: 'ulu',
     vibe: 'Nowhere to Be', location: 'Uluwatu, Bali', hotel: 'Six Senses Uluwatu', hotelMap: 'Six Senses Uluwatu, Bali', hotelNight: 'Night 4 of 4',
     headline: 'Nowhere to Be',
-    details: 'No alarm. Breakfast in the villa whenever you wake, your own pool, a book you will not finish. Late morning, if you asked for it, a short Balinese blessing at the resort temple: an offering, holy water, a priest, twenty minutes that will outlast most of the photos. At 1 the couples treatment at the Six Senses spa, then the Alchemy Bar where you blend your own scrub. At 4 the driver takes you to Suluban: a limestone cave you walk through onto a strip of sand beneath the cliffs, best at low tide, the surf breaking just past the rocks. Climb the stairs to Single Fin for the Sunday session, the one everybody means when they say Single Fin. Sunset at 6:10, DJs after, dinner at the bar. Home by 10 and pack, because tomorrow morning belongs to the pool, not the suitcase.',
+    details: 'No alarm. Breakfast in the villa whenever you wake, your own pool, a book you will not finish. Late morning, if you asked for it, a short Balinese blessing at the resort temple: an offering, holy water, a priest, twenty minutes that will outlast most of the photos. At 1 the couples treatment at the Six Senses spa, then the Alchemy Bar where you blend your own scrub. At 4 the driver takes you to Suluban: a limestone cave you walk through onto a strip of sand beneath the cliffs, best at low tide, the surf breaking just past the rocks. Climb the stairs to Single Fin for the Sunday session, the one everybody means when they say Single Fin. Sunset at 6:10, DJs after, dinner at the bar. Back by 8:30 for a private screening at Cinema Under the Stars if you asked for it, the last night in Bali, then pack, because tomorrow morning belongs to the pool, not the suitcase.',
   },
   {
     day: 7, dayName: 'Monday', dateShort: 'May 3', date: '2027-05-03', leg: 'bangkok', tz: TZ.bali, sun: 'bkk',
@@ -527,8 +528,8 @@ const photos = {
 const dayPhotos = {
   2:  ['alMourjan'],
   3:  ['sixSenses', 'villaInterior', 'baliMap', 'villaPlan'],
-  4:  ['mantaPoint', 'uluCliffhouse', 'cliffBar'],
-  5:  ['sundaysBeachClub', 'puraLuhur', 'kecak', 'rocka'],
+  4:  ['sundaysBeachClub', 'puraLuhur', 'kecak', 'rocka'],
+  5:  ['mantaPoint', 'uluCliffhouse', 'cliffBar'],
   6:  ['spaSixSenses', 'sixSensesSpa2', 'suluban', 'singleFin'],
   7:  ['baliBreakfast', 'sundeck', 'mandarinOriental', 'orientalRoom', 'orientalLobby', 'bambooBar', 'bangkokMap'],
   8:  ['klongs', 'watArun', 'bkkSocialClub', 'rajadamnern'],
@@ -562,32 +563,32 @@ const schedules = {
     { time: '6:20 PM', title: 'South to the Bukit', dur: '55m', kind: 'transit', note: 'Sunset at 6:11, over your right shoulder' },
     { time: '7:15 PM', title: 'Six Senses, Cliff Pool Villa', map: 'Six Senses Uluwatu, Bali', dur: '30m', note: 'Dark arrival. Villa host walkthrough, then lose the shoes', key: true },
     { time: '8:00 PM', title: 'Rocka', map: 'Rocka Restaurant, Six Senses Uluwatu', dur: '1h 30m', note: 'Keep it light, you have been up 30 hours' },
-    { time: '9:45 PM', title: 'Sleep on Bali time', dur: '', note: 'Lay out the boat kit tonight' },
+    { time: '9:45 PM', title: 'Sleep on Bali time', dur: '', note: 'Tomorrow is slow on purpose' },
   ],
   4: [
-    { time: '6:00 AM', title: 'Breakfast box on the terrace', dur: '30m', note: 'Jet lag has you up anyway' },
-    { time: '6:30 AM', title: 'Car to Sanur', dur: '1h', kind: 'transit' },
-    { time: '7:30 AM', title: 'Private speedboat from Sanur', map: 'Sanur Beach, Bali', dur: '8h', note: 'Manta Point first, Crystal Bay after, lunch on Nusa Penida', key: true },
-    { time: '3:30 PM', title: 'Back to Sanur', dur: '15m', kind: 'transit' },
-    { time: '3:45 PM', title: 'Car to the Bukit', dur: '1h', kind: 'transit' },
-    { time: '4:45 PM', title: 'Rinse off, rest', dur: '1h' },
-    { time: '5:45 PM', title: 'Ulu Cliffhouse', map: 'Ulu Cliffhouse, Uluwatu', dur: '1h 30m', note: 'Sunset 6:11. Rock pool, DJs, west facing. Five minutes from the villa', key: true },
-    { time: '7:15 PM', title: 'Back to the resort', dur: '10m', kind: 'transit' },
-    { time: '7:30 PM', title: 'Cliff Bar', map: 'Cliff Bar, Six Senses Uluwatu', dur: '1h 15m', note: 'Wood oven pizza. Kitchen closes at 9', key: true },
-    { time: '9:00 PM', title: 'Early night', dur: '' },
-  ],
-  5: [
-    { time: '9:00 AM', title: 'Breakfast on the terrace', dur: '1h' },
+    { time: '9:00 AM', title: 'Breakfast on the terrace', dur: '1h', note: 'No alarm. The pool is right there' },
     { time: '10:10 AM', title: 'Drive down the peninsula', dur: '20m', kind: 'transit' },
     { time: '10:30 AM', title: 'Sundays Beach Club', map: 'Sundays Beach Club, Uluwatu', dur: '4h', note: 'Cabana reserved. Funicular down, seafood lunch, swim', key: true },
     { time: '2:30 PM', title: 'Back up the hill', dur: '20m', kind: 'transit' },
     { time: '3:00 PM', title: 'Rest, rinse the sand off', dur: '1h' },
     { time: '4:15 PM', title: 'Driver to the temple', dur: '15m', kind: 'transit' },
     { time: '4:30 PM', title: 'Pura Luhur Uluwatu', map: 'Uluwatu Temple, Bali', dur: '1h 30m', note: 'Sarongs at the gate. Guard your glasses, the monkeys are professionals', key: true },
-    { time: '6:00 PM', title: 'Kecak Fire Dance', map: 'Uluwatu Temple, Bali', dur: '1h', note: 'Tickets bought online. Sunset at 6:10, mid performance', key: true },
+    { time: '6:00 PM', title: 'Kecak Fire Dance', map: 'Uluwatu Temple, Bali', dur: '1h', note: 'Tickets bought online. Sunset at 6:11, mid performance', key: true },
     { time: '7:10 PM', title: 'Back to the resort', dur: '15m', kind: 'transit' },
     { time: '7:45 PM', title: 'Rocka Edge omakase', map: 'Rocka Restaurant, Six Senses Uluwatu', dur: '2h', note: 'Fridays and Saturdays only. Ask for the table when you book the villa', key: true },
-    { time: '9:45 PM', title: 'Cinema Under the Stars', dur: '1h 30m', note: 'Private screening, arranged in advance. Optional' },
+    { time: '9:45 PM', title: 'Bed, boat kit by the door', dur: '', note: 'Car at 6:30 tomorrow' },
+  ],
+  5: [
+    { time: '6:00 AM', title: 'Breakfast box on the terrace', dur: '30m', note: 'Jet lag has you up anyway' },
+    { time: '6:30 AM', title: 'Car to Sanur', dur: '1h', kind: 'transit' },
+    { time: '7:30 AM', title: 'Private speedboat from Sanur', map: 'Sanur Beach, Bali', dur: '8h', note: 'Manta Point first, Crystal Bay after, lunch on Nusa Penida', key: true },
+    { time: '3:30 PM', title: 'Back to Sanur', dur: '15m', kind: 'transit' },
+    { time: '3:45 PM', title: 'Car to the Bukit', dur: '1h', kind: 'transit' },
+    { time: '4:45 PM', title: 'Rinse off, rest', dur: '1h' },
+    { time: '5:45 PM', title: 'Ulu Cliffhouse', map: 'Ulu Cliffhouse, Uluwatu', dur: '1h 30m', note: 'Sunset 6:10. Rock pool, DJs, west facing. Saturday, so reserve. Five minutes from the villa', key: true },
+    { time: '7:15 PM', title: 'Back to the resort', dur: '10m', kind: 'transit' },
+    { time: '7:30 PM', title: 'Cliff Bar', map: 'Cliff Bar, Six Senses Uluwatu', dur: '1h 15m', note: 'Wood oven pizza. Kitchen closes at 9', key: true },
+    { time: '9:00 PM', title: 'Early night', dur: '' },
   ],
   6: [
     { time: '9:30 AM', title: 'Breakfast in the villa', dur: '1h', note: 'No alarm' },
@@ -597,9 +598,10 @@ const schedules = {
     { time: '1:00 PM', title: 'Six Senses Spa', map: 'Six Senses Uluwatu, Bali', dur: '2h 30m', note: 'Couples treatment plus the Alchemy Bar scrub blend', key: true },
     { time: '3:45 PM', title: 'Driver to the point', dur: '20m', kind: 'transit' },
     { time: '4:05 PM', title: 'Suluban cave beach', map: 'Suluban Beach, Uluwatu', dur: '50m', note: 'Low tide is the whole point, check the tables. Sandals, not flip flops', key: true },
-    { time: '5:00 PM', title: 'Single Fin, Sunday session', map: 'Single Fin, Uluwatu', dur: '4h', note: 'Sunset 6:10, DJs after, eat here. Reserve a table', key: true },
-    { time: '9:15 PM', title: 'Back to the resort', dur: '20m', kind: 'transit' },
-    { time: '9:45 PM', title: 'Pack for Bangkok', dur: '45m' },
+    { time: '5:00 PM', title: 'Single Fin, Sunday session', map: 'Single Fin, Uluwatu', dur: '3h', note: 'Sunset 6:10, DJs after, eat here. Reserve a table', key: true },
+    { time: '8:00 PM', title: 'Back to the resort', dur: '20m', kind: 'transit' },
+    { time: '8:30 PM', title: 'Cinema Under the Stars', dur: '1h 30m', note: 'Private screening, arranged in advance. Optional. Last night in Bali' },
+    { time: '10:00 PM', title: 'Pack for Bangkok', dur: '45m' },
   ],
   7: [
     { time: '8:30 AM', title: 'Breakfast on the terrace', dur: '1h' },
@@ -736,12 +738,12 @@ const budgetData = {
     {
       name: 'Activities & Experiences', estimate: 2760, accent: '#A2662B', tint: '#F7EEE0',
       items: [
-        { label: 'Manta charter, private speedboat from Sanur, Manta Point and Crystal Bay', cost: 450, booked: false, bookBy: 'Concierge or a private operator, 4 to 8 weeks out. Friday, 7:30 AM' },
-        { label: 'Sundays Beach Club, cabana and entry', cost: 250, booked: false, bookBy: 'Reserve a week or more ahead. Holiday weekend' },
+        { label: 'Manta charter, private speedboat from Sanur, Manta Point and Crystal Bay', cost: 450, booked: false, bookBy: 'Concierge or a private operator, 4 to 8 weeks out. Saturday May 1, 7:30 AM' },
+        { label: 'Sundays Beach Club, cabana and entry', cost: 250, booked: false, bookBy: 'Reserve a week or more ahead. Friday Apr 30, Golden Week' },
         { label: 'Six Senses couples spa plus the Alchemy Bar', cost: 400, booked: false, bookBy: 'Book with the villa. Sunday 1 PM' },
-        { label: 'Uluwatu Temple entry and Kecak seats', cost: 60, booked: false, bookBy: 'Buy online in advance. Saturday 6 PM' },
+        { label: 'Uluwatu Temple entry and Kecak seats', cost: 60, booked: false, bookBy: 'Buy online in advance. Friday Apr 30, 6 PM' },
         { label: 'Balinese blessing at the resort temple', cost: 120, booked: false, bookBy: 'Ask when you book. Sunday late morning. Optional' },
-        { label: 'Private Cinema Under the Stars', cost: 50, booked: false, bookBy: 'Ask when you book. Saturday night. Optional' },
+        { label: 'Private Cinema Under the Stars', cost: 50, booked: false, bookBy: 'Ask when you book. Sunday night. Optional' },
         { label: 'Photographer at the villa', cost: 300, booked: false, bookBy: 'Optional. Monday 9:30 AM, soft light' },
         { label: 'Oriental Spa couples suite', cost: 400, booked: false, bookBy: 'Book 3 weeks ahead. Saturday 1:15 PM' },
         { label: 'Private longtail, Thonburi klongs, 2.5 hours', cost: 120, booked: false, bookBy: 'Concierge arranges. Tuesday 9:15 AM' },
@@ -796,7 +798,7 @@ const essentials = {
       addr: 'Jalan Goa Lempeh, Banjar Dinas Kangin, Pecatu, Uluwatu, Bali 80361',
       local: 'For drivers: Six Senses Uluwatu, Jalan Goa Lempeh, Pecatu',
       tel: '+62 361 2090300', nights: 'Thu Apr 29 to Mon May 3. Check in 3 PM, out 12 PM, late checkout requested', conf: '',
-      asks: ['Honeymoon note and villa flowers on night one', 'Manta charter Friday 7:30 AM, private speedboat from Sanur', 'Rocka Edge table Saturday 7:45 PM', 'Private Cinema Under the Stars Saturday night', 'Balinese blessing Sunday late morning', 'Couples spa and Alchemy Bar Sunday 1 PM', 'Late checkout Monday, 1 PM', 'Airport cars both ways, Sanur car Friday, evening drivers'],
+      asks: ['Honeymoon note and villa flowers on night one', 'Rocka Edge table Friday 7:45 PM', 'Manta charter Saturday 7:30 AM, private speedboat from Sanur', 'Private Cinema Under the Stars Sunday night', 'Balinese blessing Sunday late morning', 'Couples spa and Alchemy Bar Sunday 1 PM', 'Late checkout Monday, 1 PM', 'Airport cars both ways, Sanur car Saturday, evening drivers'],
     },
     {
       name: 'Mandarin Oriental Bangkok', map: 'Mandarin Oriental, Bangkok',
