@@ -194,17 +194,6 @@ figure.ph-hero{margin-left:calc(-1 * var(--pad));margin-right:calc(-1 * var(--pa
 .ph-plate img{object-fit:contain}
 .ph-plate .ph-lab{font-size:11px;text-transform:uppercase;letter-spacing:.22em;margin-bottom:10px;color:var(--deep)}
 .ph-plate figcaption{margin-top:12px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--acc) 18%,transparent)}
-.ph-plate svg{display:block;width:100%;height:auto}
-.ph-plate svg text{font-family:'Fraunces',Georgia,serif;font-size:11px;fill:var(--ink)}
-.ph-plate svg .lbl-s{font-size:9.5px;fill:var(--muted);font-style:italic}
-.ph-plate svg .land{fill:var(--shell);stroke:var(--acc);stroke-width:1.1;stroke-linejoin:round}
-.ph-plate svg .sea{fill:none}
-.ph-plate svg .pin{fill:var(--acc)}
-.ph-plate svg .pin-o{fill:var(--sand);stroke:var(--acc);stroke-width:1.4}
-.ph-plate svg .route{fill:none;stroke:var(--acc);stroke-width:1.2;stroke-dasharray:3 4;opacity:.8}
-.ph-plate svg .river{fill:none;stroke:var(--acc);stroke-width:5;stroke-linecap:round;opacity:.28}
-.ph-plate svg .river2{fill:none;stroke:var(--acc);stroke-width:1.2;stroke-linecap:round}
-.ph-plate svg .road{fill:none;stroke:var(--line);stroke-width:1}
 /* missing image placeholder */
 .ph-missing{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6px;padding:14px 16px;border:1px dashed var(--acc);border-radius:2px;background:var(--tint-leg);color:var(--deep)}
 .ph-missing .pm-l{font-size:11px;text-transform:uppercase;letter-spacing:.2em;opacity:.8}
@@ -478,7 +467,7 @@ const days = [
 // PHOTOS. src is the exact filename in the repo. Three tiers:
 //   hero  : full width, edge to edge on a phone. Hotels and one big moment.
 //   spot  : the default. Renders in a two across grid, cropped 3:2.
-//   plate : maps and plans in a tinted frame, never cropped. `svg` plates are drawn in code.
+//   plate : maps and plans in a tinted frame, never cropped.
 // If a file is missing the app shows a placeholder with the filename to add.
 // ─────────────────────────────────────────────────────────────────────────
 const photos = {
@@ -486,7 +475,7 @@ const photos = {
   sixSenses:        { src: 'sixsenses.jpg', tier: 'hero', ratio: '1.63', alt: 'Six Senses Uluwatu on the cliff above the Indian Ocean', caption: 'Six Senses Uluwatu' },
   villaInterior:    { src: 'villainterior.jpg', tier: 'hero', ratio: '1.59', alt: 'Open air living pavilion under a peaked teak roof, teal cushions, bed beyond', caption: 'One Bedroom Cliff Pool Villa' },
   villaPlan:        { src: 'villaplan.jpg', tier: 'plate', label: 'Villa plan', ratio: '1.8', alt: 'Floor plan of the One Bedroom Cliff Pool Villa', caption: 'Tap to enlarge. Pool on the right, daybed at the far end.' },
-  baliMap:          { svg: 'bali', tier: 'plate', label: 'The south of Bali', caption: 'Airport at the isthmus, the villa at the bottom of the Bukit, the boat to Nusa Penida from Sanur.' },
+  baliMap:          { src: 'balimap.jpg', tier: 'plate', label: 'Bali', ratio: '1.241', alt: 'Satellite map of Bali with Denpasar and the airport at the south', caption: 'The airport sits on the isthmus. The villa is 40 minutes south of it on the Bukit, the peninsula below. The boat to Nusa Penida leaves from Sanur, just east of Denpasar. Tap to enlarge.' },
   mantaPoint:       { src: 'manta_point.jpg', tier: 'spot', alt: 'Rays gliding over a reef in blue water', caption: 'Manta Point, Nusa Penida' },
   uluCliffhouse:    { src: 'ulu-cliffhouse.jpg', tier: 'spot', alt: 'Clifftop deck at sunset above turquoise water and rocks', caption: 'Ulu Cliffhouse' },
   cliffBar:         { src: 'cliff_bar.jpg', tier: 'spot', alt: 'Tables on a deck at the cliff edge at sunset', caption: 'Cliff Bar' },
@@ -504,7 +493,7 @@ const photos = {
   orientalRoom:     { src: 'oriental_hotel_room.jpg', tier: 'spot', alt: 'Room with a king bed and floor to ceiling windows over the Chao Phraya', caption: 'River view room' },
   orientalLobby:    { src: 'orientallobby.jpg', tier: 'spot', alt: 'Colonnaded lobby of the Mandarin Oriental', caption: 'The lobby' },
   bambooBar:        { src: 'bambo_bar.jpg', tier: 'spot', alt: 'Dim jazz bar with rattan seating', caption: 'The Bamboo Bar' },
-  bangkokMap:       { svg: 'bangkok', tier: 'plate', label: 'The city', caption: 'Everything you do sits on the river bend around the hotel. The airport is 45 minutes east.' },
+  bangkokMap:       { src: 'bangkokmap.jpg', tier: 'plate', label: 'Bangkok', ratio: '1.214', alt: 'Satellite map of greater Bangkok with both airports marked', caption: 'The hotel sits on the river bend in the middle of the city, and everything you do is within a few kilometres of it. Suvarnabhumi is 45 minutes east. Don Mueang is the other airport, not yours. Tap to enlarge.' },
   klongs:           { src: 'klongs.png', tier: 'spot', alt: 'Longtail boat moored between stilt houses on a Thonburi canal', caption: 'The Thonburi klongs' },
   watArun:          { src: 'wat_arun.jpg', tier: 'spot', alt: 'Wat Arun rising over the Chao Phraya at golden hour', caption: 'Wat Arun' },
   bkkSocialClub:    { src: 'bkk_social_club.webp', tier: 'spot', alt: 'Brass and leather cocktail bar with arched mirrors and ferns overhead', caption: 'BKK Social Club, Four Seasons' },
@@ -915,42 +904,6 @@ function place(text,query){
   return '<a class="pin" href="https://maps.apple.com/?q='+encodeURIComponent(query)+'" target="_blank" rel="noopener" title="'+E(text)+' in Apple Maps">'+E(text)+PIN+'</a>';
 }
 
-/* drawn maps */
-var maps={
-  bali:function(){
-    return '<svg viewBox="0 0 400 320" role="img" aria-label="Schematic map of southern Bali and Nusa Penida">'
-    +'<path class="land" d="M0,0 C30,50 60,90 95,121 C110,135 120,160 130,178 C138,195 137,205 136,208 C134,218 134,224 132,228 C120,240 100,255 92,270 C88,278 95,285 112,286 C125,286 140,275 165,250 C170,238 158,225 160,214 C165,198 172,182 180,172 C200,150 250,95 300,57 C330,38 370,15 400,0 Z"/>'
-    +'<ellipse class="land" cx="315" cy="210" rx="46" ry="38" transform="rotate(-12 315 210)"/>'
-    +'<ellipse class="land" cx="272" cy="166" rx="11" ry="7"/>'
-    +'<path class="route" d="M180,172 C230,200 265,225 298,243"/>'
-    +'<text x="24" y="34" class="lbl-s">Bali</text>'
-    +'<text x="315" y="214" text-anchor="middle" class="lbl-s">Nusa Penida</text>'
-    +'<text x="205" y="304" class="lbl-s">Indian Ocean</text>'
-    +'<circle class="pin-o" cx="136" cy="208" r="4"/><text x="144" y="205">Airport</text>'
-    +'<circle class="pin-o" cx="180" cy="172" r="4"/><text x="188" y="169">Sanur, the boat</text>'
-    +'<circle class="pin" cx="96" cy="277" r="5"/><text x="106" y="281">Six Senses, Uluwatu</text>'
-    +'<circle class="pin" cx="300" cy="244" r="5"/><text x="300" y="262" text-anchor="middle">Manta Point</text>'
-    +'</svg>';
-  },
-  bangkok:function(){
-    return '<svg viewBox="0 0 400 320" role="img" aria-label="Schematic map of Bangkok along the Chao Phraya">'
-    +'<path class="river" d="M67,0 C60,40 58,110 56,150 C55,175 68,185 76,195 C84,205 86,215 82,225 C78,240 76,250 84,262 C92,275 100,290 100,320"/>'
-    +'<path class="river2" d="M67,0 C60,40 58,110 56,150 C55,175 68,185 76,195 C84,205 86,215 82,225 C78,240 76,250 84,262 C92,275 100,290 100,320"/>'
-    +'<path class="route" d="M86,208 C160,250 260,262 344,267"/>'
-    +'<text x="14" y="112" class="lbl-s">Chao Phraya</text>'
-    +'<circle class="pin-o" cx="124" cy="72" r="4"/><text x="132" y="76">Chatuchak, Or Tor Kor</text>'
-    +'<circle class="pin-o" cx="74" cy="146" r="4"/><text x="82" y="143">Rajadamnern</text>'
-    +'<circle class="pin-o" cx="56" cy="160" r="4"/><text x="64" y="164">Grand Palace, Wat Pho</text>'
-    +'<circle class="pin-o" cx="48" cy="174" r="4"/><text x="42" y="188" text-anchor="end">Wat Arun</text>'
-    +'<circle class="pin-o" cx="78" cy="183" r="4"/><text x="86" y="187">Yaowarat</text>'
-    +'<circle class="pin" cx="86" cy="208" r="5"/><text x="96" y="205">Mandarin Oriental</text>'
-    +'<circle class="pin-o" cx="114" cy="216" r="4"/><text x="121" y="223">Vertigo</text>'
-    +'<circle class="pin-o" cx="80" cy="238" r="4"/><text x="88" y="243">Four Seasons, Capella</text>'
-    +'<circle class="pin-o" cx="150" cy="190" r="4"/><text x="158" y="186">Sorn</text>'
-    +'<circle class="pin-o" cx="344" cy="267" r="4"/><text x="344" y="286" text-anchor="middle">Airport</text>'
-    +'</svg>';
-  }
-};
 
 /* photos */
 function figCap(p){return p.caption?'<figcaption>'+E(p.caption)+'</figcaption>':''}
@@ -960,7 +913,7 @@ function figImg(p,ratio){
 }
 function heroHTML(p){return '<figure class="ph ph-hero">'+figImg(p,'1.6')+figCap(p)+'</figure>'}
 function plateHTML(p){
-  var inner=p.svg?maps[p.svg]():figImg(p,'1.5');
+  var inner=figImg(p,'1.5');
   return '<figure class="ph ph-plate">'+(p.label?'<div class="ph-lab">'+E(p.label)+'</div>':'')+inner+figCap(p)+'</figure>';
 }
 function spotsHTML(list){
@@ -982,11 +935,43 @@ function photoHTML(key){
   flush();
   return h;
 }
+// Before giving up on a file, try the spellings people actually use on GitHub:
+// underscore, hyphen and space separators, and the common extensions. Only the
+// exact name is requested first; the rest are tried on a 404.
+function phVariants(name){
+  var m=name.match(/^(.*?)\.([A-Za-z0-9]+)$/); if(!m)return[];
+  var base=m[1],ext=m[2].toLowerCase(),out=[],seen={};
+  var stem=base.replace(/[-_ ]+/g,' ');
+  var bases=[base,stem.replace(/ /g,'_'),stem.replace(/ /g,'-'),stem,stem.replace(/ /g,'')];
+  bases=bases.concat(bases.map(function(b){return b.toLowerCase()}));
+  var exts=[ext,'jpg','jpeg','png','webp',ext.toUpperCase(),'JPG','JPEG','PNG','WEBP'];
+  bases.forEach(function(b){exts.forEach(function(e){var n=b+'.'+e;if(n!==name&&!seen[n]){seen[n]=1;out.push(n)}})});
+  return out.slice(0,40);
+}
 window.phMiss=function(img){
   var box=img.parentNode; if(!box)return;
+  if(!img._tries){img._tries=phVariants(img.getAttribute('data-src'))}
+  if(img._tries.length){img.src=img._tries.shift();return}
+  var name=img.getAttribute('data-src'), cap=img.getAttribute('data-cap'), alt=img.getAttribute('alt');
   var d=document.createElement('div'); d.className='ph-missing';
-  d.innerHTML='<div class="pm-l">Add image</div><div class="pm-f">'+E(img.getAttribute('data-src'))+'</div>'+(img.getAttribute('data-cap')?'<div class="pm-c">'+E(img.getAttribute('data-cap'))+'</div>':'');
+  d.innerHTML='<div class="pm-l">Add image</div><div class="pm-f">'+E(name)+'</div>'+(cap?'<div class="pm-c">'+E(cap)+'</div>':'');
   img.remove(); box.appendChild(d);
+  // A file that was pushed minutes ago can 404 from the CDN cache on the first
+  // load. Try the exact name again, uncached, a few times before giving up.
+  var tries=0;
+  (function again(){
+    if(tries++>=4)return;
+    setTimeout(function(){
+      var t=new Image();
+      t.onload=function(){
+        var n=document.createElement('img');
+        n.src=t.src; n.alt=alt||cap||''; n.setAttribute('data-cap',cap||''); n.setAttribute('data-src',name);
+        d.remove(); box.appendChild(n);
+      };
+      t.onerror=again;
+      t.src=name+'?r='+Date.now();
+    },6000*tries);
+  })();
 };
 
 /* schedule */
