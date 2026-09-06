@@ -135,12 +135,12 @@ figcaption{font-size:11px;font-style:italic;margin-top:10px;line-height:1.5}
 }
 
 /* tier 2 - restaurants, beach clubs, stops along the way */
-.ph-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:24px 0;max-width:42rem}
-@media(min-width:768px){.ph-grid{gap:16px;grid-template-columns:repeat(3,1fr)}}
-.ph-grid.one{grid-template-columns:1fr;max-width:23rem}
-.ph-grid.two{grid-template-columns:repeat(2,1fr);max-width:34rem}
+.ph-grid{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin:24px 0;max-width:44rem}
+@media(min-width:768px){.ph-grid{gap:16px}}
+.ph-grid.one{grid-template-columns:1fr;max-width:30rem}
+.ph-grid.two{grid-template-columns:repeat(2,1fr);max-width:44rem}
 .ph-spot{margin:0}
-.ph-spot .ph-box{aspect-ratio:4/5}
+.ph-spot .ph-box{aspect-ratio:3/2}
 .ph-spot figcaption{font-size:10.5px;margin-top:7px}
 @media(min-width:768px){.ph-spot figcaption{font-size:11px}}
 
@@ -456,7 +456,7 @@ const photos = {
     tier: 'hero',
     ratio: '1.72',
     alt: 'Staircase down into the Al Mourjan lounge at Hamad International',
-    caption: 'Al Mourjan, Doha \u00b7 the alternative to six hours at a gate',
+    caption: 'Al Mourjan, Doha',
   },
 
   // ── uluwatu ─────────────────────────────────────────────────────────────
@@ -464,14 +464,14 @@ const photos = {
     src: 'sixsenses.jpg',
     tier: 'hero',
     ratio: '1.63',
-    caption: 'Six Senses Uluwatu, terraced down the limestone above the Indian Ocean',
+    caption: 'Six Senses Uluwatu',
   },
   villaInterior: {
     src: 'villainterior.jpg',
     tier: 'hero',
     ratio: '1.59',
     alt: 'Open air living pavilion under a peaked teak roof, teal cushions, bed beyond',
-    caption: 'Inside the villa \u00b7 the living pavilion opens on both sides, bed behind the mosquito netting',
+    caption: 'One Bedroom Cliff Pool Villa',
   },
   baliMap: {
     src: 'balimap.jpg',
@@ -479,14 +479,14 @@ const photos = {
     label: 'Where you land',
     ratio: '1.24',
     alt: 'Satellite map of Bali, airport in the south, Bukit Peninsula below it',
-    caption: 'Denpasar sits at the bottom of the island. Everything you do is on the Bukit, the limestone peninsula just south of the airport.',
+    caption: 'The Bukit Peninsula, south of the airport.',
   },
   villaPlan: {
     src: 'villaplan.jpg',
     tier: 'plate',
     label: 'Villa plan',
     ratio: '1.8',
-    caption: 'Your One Bedroom Cliff Pool Villa \u00b7 21 sq m private pool, outdoor shower, daybed',
+    caption: 'One Bedroom Cliff Pool Villa.',
   },
   baliBreakfast: {
     src: 'bali_breakfast.jpg',
@@ -498,7 +498,7 @@ const photos = {
     src: 'Sundays_Beach_Club_jpg.webp',
     tier: 'spot',
     alt: 'Bamboo cabana with white curtains and bean bags looking out to the surf',
-    caption: 'Sundays Beach Club \u00b7 cabana on the sand',
+    caption: 'Sundays Beach Club',
   },
   spaSixSenses: {
     src: 'spa_six_senses.jpg',
@@ -510,13 +510,13 @@ const photos = {
     src: 'single_fin.jpg',
     tier: 'spot',
     alt: 'Clifftop pool deck above the Uluwatu surf break',
-    caption: 'Single Fin \u00b7 above the break',
+    caption: 'Single Fin',
   },
   cliffBar: {
     src: 'cliff_bar.jpg',
     tier: 'spot',
     alt: 'Tables on a deck at the cliff edge at sunset',
-    caption: 'Cliff Bar \u00b7 pizza at the edge',
+    caption: 'Cliff Bar',
   },
   puraLuhur: {
     src: 'pura_luhur.jpg',
@@ -534,25 +534,25 @@ const photos = {
     src: 'el-kabron-bali.jpg',
     tier: 'spot',
     alt: 'Clifftop restaurant tables looking west over the ocean at sunset',
-    caption: 'El Kabron \u00b7 clifftop Spanish',
+    caption: 'El Kabron',
   },
   sixSensesSpa2: {
     src: 'six_senses_spa_part_2.jpg',
     tier: 'spot',
     alt: 'Couples treatment room at the Six Senses spa',
-    caption: 'The couples treatment',
+    caption: 'Six Senses Spa',
   },
   sundeck: {
     src: 'sundeck_six_senses.jpg',
     tier: 'spot',
     alt: 'Infinity pool and loungers on the cliff above the Indian Ocean',
-    caption: 'The main cliff pool \u00b7 cabanas are free',
+    caption: 'The main cliff pool',
   },
   rocka: {
     src: 'rocka.jpg',
     tier: 'spot',
     alt: 'Open sided dining room with ocean beyond',
-    caption: 'Rocka \u00b7 book the terrace',
+    caption: 'Rocka',
   },
 
   // ── bangkok ─────────────────────────────────────────────────────────────
@@ -561,14 +561,25 @@ const photos = {
     tier: 'hero',
     ratio: '1.5',
     alt: 'Riverside terrace of the Mandarin Oriental with a boat passing on the Chao Phraya',
-    caption: 'Mandarin Oriental Bangkok \u00b7 on the river since 1876',
+    caption: 'Mandarin Oriental Bangkok',
+  },
+  orientalRoom: {
+    src: 'oriental_hotel_room.jpg',
+    tier: 'spot',
+    alt: 'Room with a king bed and floor to ceiling windows over the Chao Phraya',
+    caption: 'River view room',
+  },
+  orientalLobby: {
+    src: 'orientallobby.jpg',
+    tier: 'spot',
+    alt: 'Colonnaded lobby of the Mandarin Oriental',
+    caption: 'The lobby',
   },
   mandarinPool: {
     src: 'mandarin_pool.jpg',
-    tier: 'hero',
-    ratio: '1.78',
+    tier: 'spot',
     alt: 'Pool flanked by Thai pavilions with the Bangkok skyline behind',
-    caption: 'The pool \u00b7 where you sit out the afternoon heat',
+    caption: 'The pool',
   },
   bangkokMap: {
     src: 'bangkokmap.jpg',
@@ -576,61 +587,61 @@ const photos = {
     label: 'The city',
     ratio: '1.21',
     alt: 'Satellite map of Bangkok, the river curving through the middle, Suvarnabhumi to the east',
-    caption: 'Suvarnabhumi is out east, about 45 minutes in. The hotel sits on the outside of the river bend, west of centre.',
+    caption: 'Suvarnabhumi east, the hotel on the river bend.',
   },
   bambooBar: {
     src: 'bambo_bar.jpg',
     tier: 'spot',
     alt: 'Dim jazz bar with rattan seating',
-    caption: 'The Bamboo Bar \u00b7 jazz since 1953',
+    caption: 'The Bamboo Bar',
   },
   grandPalace: {
     src: 'grand_palace.jpg',
     tier: 'spot',
     alt: 'Gilded spires of the Grand Palace complex',
-    caption: 'Grand Palace \u00b7 be there at 8',
+    caption: 'Grand Palace',
   },
   recliningBuddha: {
     src: 'recling_buddha.jpg',
     tier: 'spot',
     alt: 'The gold Reclining Buddha filling its hall at Wat Pho',
-    caption: 'Wat Pho \u00b7 150 feet of gold leaf',
+    caption: 'Wat Pho',
   },
   watArun: {
     src: 'wat_arun.jpg',
     tier: 'spot',
     alt: 'Wat Arun rising over the Chao Phraya at golden hour',
-    caption: 'Wat Arun, across the water',
+    caption: 'Wat Arun',
   },
   sorn: {
     src: 'sorn.jpg',
     tier: 'spot',
     alt: 'Candlelit terrace tables with the Bangkok skyline behind',
-    caption: 'Sorn \u00b7 book months ahead',
+    caption: 'Sorn',
   },
   klongs: {
     src: 'klongs.png',
     tier: 'spot',
     alt: 'Longtail boat moored between stilt houses on a Thonburi canal',
-    caption: 'The Thonburi klongs by longtail',
+    caption: 'The Thonburi klongs',
   },
   blueElephant: {
     src: 'blue_elephant.jpg',
     tier: 'spot',
     alt: 'Teak dining room of the Blue Elephant cooking school',
-    caption: 'Blue Elephant \u00b7 market, then you cook',
+    caption: 'Blue Elephant',
   },
   yaowarat: {
     src: 'yaowarat.jpg',
     tier: 'spot',
     alt: 'Neon signs stacked over the traffic on Yaowarat Road at dusk',
-    caption: 'Yaowarat \u00b7 best food night of the trip',
+    caption: 'Yaowarat',
   },
   orientalSpa: {
     src: 'oriental_spa.jpg',
     tier: 'spot',
     alt: 'Lily pond courtyard at the Oriental Spa',
-    caption: 'The Oriental Spa, across the river',
+    caption: 'The Oriental Spa',
   },
   jimThompson: {
     src: 'jim_thompson.jpg',
@@ -642,20 +653,20 @@ const photos = {
     src: 'vertigo.jpg',
     tier: 'spot',
     alt: 'Rooftop bar and dining terrace above the city at dusk',
-    caption: 'Vertigo \u00b7 61 floors up',
+    caption: 'Vertigo',
   },
   nahm: {
     src: 'nahm.jpeg',
     tier: 'spot',
     alt: 'Candlelit restaurant terrace among high rises',
-    caption: 'Nahm, Paste, or Gaggan',
+    caption: 'Nahm',
   },
   chatuchak: {
     src: 'chatuchak.jpg',
     tier: 'hero',
     ratio: '1.5',
     alt: 'Thousands of coloured market stall roofs lit at dusk under the Bangkok skyline',
-    caption: 'Chatuchak \u00b7 last shot at anything you missed',
+    caption: 'Chatuchak Weekend Market',
   },
 };
 
@@ -681,7 +692,7 @@ const dayPhotos = {
   4: ['baliBreakfast', 'sundaysBeachClub', 'spaSixSenses', 'singleFin', 'cliffBar'],
   5: ['puraLuhur', 'kecak', 'elKabron'],
   6: ['sixSensesSpa2', 'sundeck', 'rocka'],
-  7: ['mandarinOriental', 'mandarinPool', 'bangkokMap', 'bambooBar'],
+  7: ['mandarinOriental', 'orientalRoom', 'orientalLobby', 'mandarinPool', 'bambooBar', 'bangkokMap'],
   8: ['grandPalace', 'recliningBuddha', 'watArun', 'sorn'],
   9: ['klongs', 'blueElephant', 'yaowarat'],
   10: ['orientalSpa', 'jimThompson', 'vertigo', 'nahm'],
@@ -1051,7 +1062,7 @@ function spotsHTML(list,accent){
   var size=list.length===1?' one':(list.length===2?' two':'');
   var h='<div class="ph-grid'+size+'">';
   list.forEach(function(p){
-    h+='<figure class="ph ph-spot">'+figImg(p,'0.8')+figCap(p,accent)+'</figure>';
+    h+='<figure class="ph ph-spot">'+figImg(p,'1.5')+figCap(p,accent)+'</figure>';
   });
   return h+'</div>';
 }
