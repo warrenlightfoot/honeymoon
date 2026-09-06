@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#faf8f3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Honeymoon">
+<title>The Honeymoon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:#faf8f3;
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  color:#1c1917;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+.d{font-family:'Fraunces',Georgia,serif;font-feature-settings:"ss01"}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+@media(min-width:768px){.wrap{padding:0 48px}}
+
+/* tabs */
+.tabs{position:sticky;top:0;z-index:50;background:rgba(250,248,243,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #e7e5e4;padding-top:env(safe-area-inset-top)}
+.tabs-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;gap:32px;height:56px;align-items:center}
+@media(min-width:768px){.tabs-inner{padding:0 48px;gap:48px;height:64px}}
+.tab{background:none;border:none;padding:8px 0;font-family:'Fraunces',Georgia,serif;font-size:15px;letter-spacing:.02em;color:#a8a29e;cursor:pointer;position:relative}
+.tab.on{color:#1c1917}
+.tab.on::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:#1c1917}
+
+/* hero */
+header.hero{padding:48px 0 40px}
+@media(min-width:768px){header.hero{padding:80px 0 56px}}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.4em;color:#78716c;margin-bottom:24px}
+@media(min-width:768px){.eyebrow{font-size:12px}}
+h1.title{font-size:60px;line-height:.95;letter-spacing:-.02em;margin:0 0 24px;font-weight:400}
+@media(min-width:768px){h1.title{font-size:88px}}
+.dates{font-size:20px;font-style:italic;color:#57534e}
+@media(min-width:768px){.dates{font-size:24px}}
+.places{margin-top:8px;font-size:14px;color:#78716c}
+
+/* stats */
+.stats{border-top:1px solid #d6d3d1;border-bottom:1px solid #d6d3d1;padding:32px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:16px}
+@media(min-width:768px){.stats{padding:40px 0}}
+.stat{text-align:center}
+.stat-v{font-size:32px;line-height:1;letter-spacing:-.02em}
+@media(min-width:768px){.stat-v{font-size:48px}}
+.stat-l{margin-top:8px;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#78716c}
+@media(min-width:768px){.stat-l{font-size:12px}}
+
+/* leg header */
+.leg{text-align:center;padding:56px 0}
+@media(min-width:768px){.leg{padding:80px 0}}
+.leg-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px}
+.leg-rule i{display:block;width:64px;height:1px}
+@media(min-width:768px){.leg-rule i{width:96px}}
+.leg-rule b{display:block;width:10px;height:10px;border-radius:50%}
+.leg-dates{font-size:10px;text-transform:uppercase;letter-spacing:.4em;margin-bottom:14px}
+@media(min-width:768px){.leg-dates{font-size:12px}}
+.leg-name{font-size:52px;line-height:1;letter-spacing:-.02em;margin:0;font-weight:400}
+@media(min-width:768px){.leg-name{font-size:84px}}
+
+/* day */
+.day{padding:32px 0;border-bottom:1px solid #e7e5e4}
+.day.last{border-bottom:none}
+@media(min-width:768px){.day{padding:40px 0}}
+.day-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:12px}
+.day-n{font-family:'Fraunces',Georgia,serif;font-size:12px;text-transform:uppercase;letter-spacing:.3em;font-weight:500}
+@media(min-width:768px){.day-n{font-size:14px}}
+.day-date{font-size:14px;color:#57534e}
+@media(min-width:768px){.day-date{font-size:16px}}
+.day-vibe{font-size:12px;font-style:italic;color:#78716c}
+@media(min-width:768px){.day-vibe{font-size:14px}}
+.dot{color:#d6d3d1;font-size:12px}
+h3.day-h{font-size:30px;line-height:1.1;letter-spacing:-.02em;margin:0 0 8px;font-weight:400}
+@media(min-width:768px){h3.day-h{font-size:44px}}
+.day-loc{font-size:14px;color:#57534e;letter-spacing:.02em;margin-bottom:16px}
+@media(min-width:768px){.day-loc{font-size:16px}}
+.day-body{font-size:14px;line-height:1.7;color:#44403c;max-width:42rem}
+@media(min-width:768px){.day-body{font-size:16px}}
+
+/* lodging */
+.lodge{display:inline-block;padding:10px 16px;border-radius:2px;margin-bottom:20px}
+.lodge-l{font-size:10px;text-transform:uppercase;letter-spacing:.2em;margin-bottom:4px}
+.lodge-n{font-family:'Fraunces',Georgia,serif;font-size:16px;line-height:1.3}
+@media(min-width:768px){.lodge-n{font-size:18px}}
+.lodge-x{font-size:12px;color:#78716c;margin-top:2px}
+
+/* photos */
+figure.ph{margin:24px 0}
+figure.ph.bleed{margin-left:-24px;margin-right:-24px}
+@media(min-width:768px){figure.ph.bleed{margin-left:0;margin-right:0}}
+.ph-box{overflow:hidden}
+@media(min-width:768px){.ph-box{border-radius:2px}}
+figure.ph:not(.bleed) .ph-box{border-radius:2px}
+.ph-box img{display:block;width:100%;height:100%}
+figcaption{font-size:11px;font-style:italic;margin-top:10px}
+figure.ph.bleed figcaption{padding:0 24px}
+@media(min-width:768px){figure.ph.bleed figcaption{padding:0}figcaption{font-size:12px}}
+
+/* schedule */
+.sched{margin:24px 0}
+.sched-l{font-size:10px;text-transform:uppercase;letter-spacing:.25em;margin-bottom:16px}
+.row{display:grid;grid-template-columns:66px 1fr;gap:12px}
+@media(min-width:768px){.row{grid-template-columns:78px 1fr;gap:20px}}
+.row-t{position:relative}
+.row-time{font-size:11px;font-variant-numeric:tabular-nums;padding-top:3px;white-space:nowrap}
+@media(min-width:768px){.row-time{font-size:12px}}
+.row-line{position:absolute;left:61px;top:4px;bottom:0;width:1px}
+@media(min-width:768px){.row-line{left:73px}}
+.row-c{padding-bottom:16px}
+.row-c.tr{padding-bottom:12px}
+.row-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.row-title{font-size:14px;line-height:1.35}
+@media(min-width:768px){.row-title{font-size:16px}}
+.row-dur{font-size:10px;font-variant-numeric:tabular-nums;white-space:nowrap;padding:2px 6px;border-radius:2px}
+@media(min-width:768px){.row-dur{font-size:12px}}
+.row-note{font-size:11px;font-style:italic;color:#78716c;margin-top:4px;padding-right:40px}
+@media(min-width:768px){.row-note{font-size:12px}}
+.tr-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.tr-t{font-size:11px;font-style:italic;color:#a8a29e}
+.tr-d{font-size:10px;font-variant-numeric:tabular-nums;color:#a8a29e}
+.tr-n{font-size:10px;font-style:italic;color:#a8a29e;flex-basis:100%}
+
+/* budget */
+.kpis{border-top:1px solid #d6d3d1;border-bottom:1px solid #d6d3d1;padding:32px 0;display:grid;grid-template-columns:repeat(2,1fr);gap:32px 0;margin-bottom:48px}
+@media(min-width:768px){.kpis{grid-template-columns:repeat(4,1fr);padding:40px 0;gap:0}}
+.kpi{text-align:center}
+.kpi-v{font-size:38px;line-height:1;letter-spacing:-.02em}
+@media(min-width:768px){.kpi-v{font-size:56px}}
+.kpi-s{margin-top:8px;font-size:12px}
+@media(min-width:768px){.kpi-s{font-size:14px}}
+.kpi-l{margin-top:8px;font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:#78716c}
+@media(min-width:768px){.kpi-l{font-size:12px}}
+.barwrap{margin-bottom:64px}
+.bar-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.bar-lab{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:#78716c}
+@media(min-width:768px){.bar-lab{font-size:12px}}
+.bar-tot{font-family:'Fraunces',Georgia,serif;font-size:14px;color:#57534e}
+.bar{display:flex;width:100%;height:14px;border-radius:2px;overflow:hidden}
+.legend{margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px}
+@media(min-width:768px){.legend{grid-template-columns:repeat(3,1fr)}}
+.lg{display:flex;align-items:center;gap:10px;min-width:0}
+.lg i{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.lg span{font-size:13px;color:#44403c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lg em{font-size:11px;color:#a8a29e;font-style:normal}
+.callout{padding:18px 20px;border-radius:2px;border-left:2px solid;margin-bottom:48px}
+.callout-l{font-size:10px;text-transform:uppercase;letter-spacing:.25em;margin-bottom:8px;font-weight:500}
+.callout p{margin:0;font-size:14px;line-height:1.7;color:#44403c}
+@media(min-width:768px){.callout p{font-size:16px}}
+.cat{padding:32px 0;border-bottom:1px solid #e7e5e4}
+.cat:last-child{border-bottom:none}
+.cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:4px}
+.cat-n{font-family:'Fraunces',Georgia,serif;font-size:24px;letter-spacing:-.02em;margin:0;font-weight:400}
+@media(min-width:768px){.cat-n{font-size:30px}}
+.cat-v{font-family:'Fraunces',Georgia,serif;font-size:24px;letter-spacing:-.02em}
+@media(min-width:768px){.cat-v{font-size:30px}}
+.cat-pct{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:#78716c;margin-bottom:20px}
+.item{padding-bottom:14px;border-bottom:1px dotted #e7e5e4;margin-bottom:14px}
+.item:last-of-type{border-bottom:none}
+.item-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.item-l{font-size:14px;color:#292524}
+@media(min-width:768px){.item-l{font-size:16px}}
+.item-c{font-size:14px;color:#44403c;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(min-width:768px){.item-c{font-size:16px}}
+.item-b{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;text-transform:uppercase;letter-spacing:.15em;padding:2px 6px;border-radius:2px;font-weight:500;background:#166534;color:#fff}
+.item-when{font-size:12px}
+.notes{font-size:12px;font-style:italic;padding:12px 16px;border-radius:2px;line-height:1.6}
+@media(min-width:768px){.notes{font-size:14px}}
+footer{border-top:1px solid #e7e5e4;padding:24px 0 64px;font-size:12px;color:#78716c;line-height:1.7;max-width:42rem}
+.fin{text-align:center;padding-top:48px;font-family:'Fraunces',Georgia,serif;font-style:italic;color:#a8a29e;font-size:14px}
+.pb{padding-bottom:96px}
+</style>
+</head>
+<body>
+<nav class="tabs"><div class="tabs-inner">
+  <button class="tab on" data-tab="itinerary">Itinerary</button>
+  <button class="tab" data-tab="budget">Budget</button>
+</div></nav>
+<main id="app"></main>
+
+<script>
+/* ==== DATA ==== */
+const trip = {
+  title: 'The Honeymoon',
+  dates: 'April 27 — May 8, 2027',
+  budget: 25000,
+};
+
+const days = [
+  {
+    day: 1,
+    dayName: 'Tuesday',
+    dateShort: 'Apr 27',
+    leg: 'travel',
+    vibe: 'Departure',
+    location: 'DFW → Doha',
+    hotel: null,
+    hotelNight: null,
+    headline: 'Wheels Up',
+    details:
+      'Booked. Late departure at 10:50 PM means the whole day is yours at home, no dawn alarm. Eat a real dinner before you board. The A350 runs a lower cabin altitude and higher humidity than older widebodies, so you will land less wrecked than you expect. Set your watch to Bali time now.',
+  },
+  {
+    day: 2,
+    dayName: 'Wednesday',
+    dateShort: 'Apr 28',
+    leg: 'travel',
+    vibe: 'In Transit',
+    location: 'Hamad International, Doha',
+    hotel: null,
+    hotelNight: null,
+    headline: 'The Long Middle',
+    details:
+      'Land Doha at 9:20 PM after crossing eight time zones. You have 5h45m before the Bali flight boards at 3:05 AM, and it is the middle of the night. Options: book a room at the Oryx Airport Hotel inside the terminal by the hour and actually lie flat, or buy into the Al Mourjan lounge for a shower, a proper meal, and a quiet chair. Either beats sitting at a gate for six hours. Budget $60 to $120 and it transforms the trip.',
+  },
+  {
+    day: 3,
+    dayName: 'Thursday',
+    dateShort: 'Apr 29',
+    leg: 'uluwatu',
+    vibe: 'Arrival',
+    location: 'Uluwatu, Bali',
+    hotel: 'Six Senses Uluwatu',
+    hotelNight: 'Night 1 of 4',
+    headline: 'To the Cliffs',
+    details:
+      'Wheels down in Denpasar at 5:35 PM. Clear immigration, meet the hotel car, 45 minutes south to the Bukit Peninsula. Check into the One Bedroom Cliff Pool Villa around 7pm. It will be dark, which is fine, because the reveal in the morning is better anyway. Light dinner at Rocka, then sleep. You have been traveling roughly 30 hours and it is now Thursday night in Bali. Sleeping tonight puts you on local time immediately.',
+  },
+  {
+    day: 4,
+    dayName: 'Friday',
+    dateShort: 'Apr 30',
+    leg: 'uluwatu',
+    vibe: 'Beach + Pool',
+    location: 'Uluwatu, Bali',
+    hotel: 'Six Senses Uluwatu',
+    hotelNight: 'Night 2 of 4',
+    headline: 'First Real Day',
+    details:
+      "Wake up and actually see where you are. Slow breakfast on the villa terrace. Beach club day, either Sundays Beach Club at Ungasan or Karma Beach. Lounge, swim, eat seafood with your toes in the sand. Optional beginner surf lesson at Padang Padang, the wave is forgiving. Back to the resort for a late afternoon spa treatment. Sunset cocktails at Single Fin over the Uluwatu break.",
+  },
+  {
+    day: 5,
+    dayName: 'Saturday',
+    dateShort: 'May 1',
+    leg: 'uluwatu',
+    vibe: 'Temple + Kecak',
+    location: 'Uluwatu Temple, Bali',
+    hotel: 'Six Senses Uluwatu',
+    hotelNight: 'Night 3 of 4',
+    headline: 'Uluwatu Temple at Sunset',
+    details:
+      "Pool morning, late lunch. Late afternoon head to Pura Luhur Uluwatu, an 11th-century sea temple on a 230-foot cliff. Walk the grounds before sunset and watch your sunglasses, the monkeys are professionals. At 6pm take your seat for the Kecak Fire Dance: 60+ men in a circle chanting around a fire as a Ramayana drama plays out and the sun drops into the ocean behind the temple. Buy front-row tickets in advance. Dinner after at El Kabron or back at Cliff House.",
+  },
+  {
+    day: 6,
+    dayName: 'Sunday',
+    dateShort: 'May 2',
+    leg: 'uluwatu',
+    vibe: 'Full Reset',
+    location: 'Uluwatu, Bali',
+    hotel: 'Six Senses Uluwatu',
+    hotelNight: 'Night 4 of 4',
+    headline: 'Rot Day',
+    details:
+      "Pure decompression, no agenda. Breakfast in the villa, swim in your own pool, couples treatment at the Six Senses spa including the Alchemy Bar where you blend your own scrub. Long lazy lunch at the Sundeck. Cliff-edge cabana all afternoon. Final Bali dinner at Cliff House, book the terrace, watch the sun go down over the Indian Ocean. Pack tonight.",
+  },
+  {
+    day: 7,
+    dayName: 'Monday',
+    dateShort: 'May 3',
+    leg: 'bangkok',
+    vibe: 'Transit + Arrival',
+    location: 'DPS → Bangkok',
+    hotel: 'Mandarin Oriental Bangkok',
+    hotelNight: 'Night 1 of 4',
+    headline: 'Bali → Bangkok',
+    details:
+      "Morning transfer to DPS, about 45 minutes. Direct DPS to BKK is roughly 4.5 hours on Thai Airways or Garuda. Land mid-afternoon at Suvarnabhumi, visa-free on a US passport. Pre-arrange the hotel car, Bangkok traffic is not something you want to negotiate after a flight. Check in at the Mandarin Oriental on the Chao Phraya, in operation since 1876. Cocktails at the Bamboo Bar, then dinner on the riverside terrace watching longtail boats go by.",
+  },
+  {
+    day: 8,
+    dayName: 'Tuesday',
+    dateShort: 'May 4',
+    leg: 'bangkok',
+    vibe: 'Temples + River',
+    location: 'Bangkok',
+    hotel: 'Mandarin Oriental Bangkok',
+    hotelNight: 'Night 2 of 4',
+    headline: 'Grand Palace & Wat Pho',
+    details:
+      "Be at the gates by 8am to beat the heat. Grand Palace and Wat Phra Kaew, home of the Emerald Buddha, the most ornate complex in Thailand. Walk next door to Wat Pho for the 150-foot Reclining Buddha and a massage at the temple school where Thai massage was codified, about $10 an hour. Ferry across to Wat Arun. Retreat to the hotel pool through peak afternoon heat. Dinner at Sorn if you got the reservation, otherwise Le Du.",
+  },
+  {
+    day: 9,
+    dayName: 'Wednesday',
+    dateShort: 'May 5',
+    leg: 'bangkok',
+    vibe: 'Markets + Canals',
+    location: 'Bangkok',
+    hotel: 'Mandarin Oriental Bangkok',
+    hotelNight: 'Night 3 of 4',
+    headline: 'Longtail Boats & Chinatown',
+    details:
+      "Morning on a private longtail through the Thonburi klongs, the old Bangkok of stilt houses and temple docks you can only reach by water. About $60 an hour, worth every baht. Afternoon cooking class at Blue Elephant or Silom Thai, market visit first, then you cook four dishes and eat them. Evening: Yaowarat street food crawl. Grilled river prawns, oyster omelettes, mango sticky rice, plastic stools, neon overhead. Best food night of the trip.",
+  },
+  {
+    day: 10,
+    dayName: 'Thursday',
+    dateShort: 'May 6',
+    leg: 'bangkok',
+    vibe: 'Slow Day',
+    location: 'Bangkok',
+    hotel: 'Mandarin Oriental Bangkok',
+    hotelNight: 'Night 4 of 4',
+    headline: 'Spa & Jim Thompson',
+    details:
+      "Keep it soft. Morning at the Oriental Spa across the river via the free hotel boat, housed in a century-old teak building, their couples suites are the benchmark in Bangkok. Afternoon at Jim Thompson House, the silk magnate's teak compound, he walked into a Malaysian jungle in 1967 and was never seen again. Sunset cocktails at Vertigo on the 61st floor of the Banyan Tree. Dinner at Nahm, Paste, or Gaggan Anand for the full theatrical tasting menu.",
+  },
+  {
+    day: 11,
+    dayName: 'Friday',
+    dateShort: 'May 7',
+    leg: 'bangkok',
+    vibe: 'Last Day',
+    location: 'Bangkok',
+    hotel: null,
+    hotelNight: 'Late checkout',
+    headline: 'One More Day',
+    details:
+      "Ask the Mandarin Oriental for late checkout, they are usually generous and often go to 4pm for honeymooners who asked nicely at check-in. Spend the morning at Chatuchak if it is running, or back through Yaowarat for the dishes you missed. Store bags with the concierge, eat a real last meal, then head to the airport by about 5:15 PM. The Doha flight departs 9:05 PM, and you want a real buffer for Bangkok traffic.",
+  },
+  {
+    day: 12,
+    dayName: 'Saturday',
+    dateShort: 'May 8',
+    leg: 'travel',
+    vibe: 'Travel Home',
+    location: 'BKK → DFW',
+    hotel: null,
+    hotelNight: null,
+    headline: 'Home',
+    details:
+      'Land Doha 11:40 PM Friday. Tight, clean 2h10m connection, just enough to clear transfer security and stretch. The Dallas flight boards at 1:50 AM for the 16-hour run home, landing 9:50 AM Saturday morning. You gain the hours back flying west. Home before noon with the whole weekend to reset. Sunday May 9 is for pajamas, takeout, and unpacking slowly.',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// PHOTOS
+// Add new images here, then reference the key from dayPhotos below.
+// ─────────────────────────────────────────────────────────────────────────
+
+const photos = {
+  sixSenses: {
+    src: 'assets/six-senses.jpg',
+    ratio: '1.6',
+    caption: 'Six Senses Uluwatu, terraced down the limestone above the Indian Ocean',
+  },
+  villaPlan: {
+    src: 'assets/villa-plan.jpg',
+    ratio: '1.81',
+    contain: true,
+    caption: 'Your One Bedroom Cliff Pool Villa \u00b7 21 sq m private pool, outdoor shower, daybed',
+  },
+};
+
+// Maps day number -> photo key, or an array of keys.
+// Place at the first appearance of a location or activity.
+const dayPhotos = {
+  3: ['sixSenses', 'villaPlan'],
+};
+
+const schedules = {
+  1: [
+    { time: '7:00 PM', title: 'Leave the house', dur: '45m', kind: 'transit' },
+    { time: '7:45 PM', title: 'Dallas Fort Worth', dur: '1h', note: 'Qatar check-in, arrive 3h before international', key: true },
+    { time: '8:45 PM', title: 'Security, then a real dinner airside', dur: '2h' },
+    { time: '10:50 PM', title: 'Flight to Doha', dur: '14h 30m', note: 'Set your watch to Bali time now', key: true },
+  ],
+  2: [
+    { time: '9:20 PM', title: 'Doha', dur: '', note: 'All times local', key: true },
+    { time: '9:40 PM', title: 'Walk through the terminal', dur: '20m', kind: 'transit' },
+    { time: '10:00 PM', title: 'Oryx Airport Hotel or Al Mourjan', dur: '4h', note: 'Books by the hour, inside security. Shower and lie flat.', key: true },
+    { time: '2:20 AM', title: 'Back through to the gate', dur: '25m', kind: 'transit' },
+    { time: '3:05 AM', title: 'Flight to Bali', dur: '9h 30m', key: true },
+  ],
+  3: [
+    { time: '5:35 PM', title: 'Denpasar', dur: '', key: true },
+    { time: '5:45 PM', title: 'Immigration, bags, meet the driver', dur: '40m' },
+    { time: '6:30 PM', title: 'South to the Bukit Peninsula', dur: '45m', kind: 'transit' },
+    { time: '7:15 PM', title: 'Six Senses · Cliff Pool Villa', dur: '30m', note: 'Dark arrival. The reveal is better in the morning anyway.', key: true },
+    { time: '8:00 PM', title: 'Rocka', dur: '1h 30m', note: 'Keep it light, you have been up 30 hours' },
+    { time: '10:00 PM', title: 'Sleep on Bali time', dur: '' },
+  ],
+  4: [
+    { time: '8:30 AM', title: 'Breakfast on the villa terrace', dur: '1h 15m', note: 'First real look at where you are' },
+    { time: '10:00 AM', title: 'Drive down the peninsula', dur: '20m', kind: 'transit' },
+    { time: '10:30 AM', title: 'Sundays Beach Club', dur: '5h', note: 'Cabana, funicular down to the sand, seafood lunch', key: true },
+    { time: '3:30 PM', title: 'Back up the hill', dur: '20m', kind: 'transit' },
+    { time: '4:00 PM', title: 'Six Senses Spa', dur: '1h 30m', key: true },
+    { time: '5:45 PM', title: 'Over to the point', dur: '15m', kind: 'transit' },
+    { time: '6:00 PM', title: 'Single Fin', dur: '1h 30m', note: 'Sunset over the Uluwatu break', key: true },
+    { time: '8:00 PM', title: 'Dinner', dur: '2h' },
+  ],
+  5: [
+    { time: '9:00 AM', title: 'Villa pool, slow morning', dur: '3h 30m' },
+    { time: '12:30 PM', title: 'Late lunch at the Sundeck', dur: '1h 30m' },
+    { time: '2:00 PM', title: 'Nap, read, nothing', dur: '2h' },
+    { time: '4:05 PM', title: 'Driver down to the cliff', dur: '25m', kind: 'transit' },
+    { time: '4:30 PM', title: 'Pura Luhur Uluwatu', dur: '1h 30m', note: 'Watch your sunglasses, the monkeys are professionals', key: true },
+    { time: '6:00 PM', title: 'Kecak Fire Dance', dur: '1h', note: 'Front-row tickets, arrive early for seats' },
+    { time: '7:20 PM', title: 'Drive to dinner', dur: '20m', kind: 'transit' },
+    { time: '7:45 PM', title: 'El Kabron', dur: '2h 15m', note: 'Clifftop Spanish. Or back to Cliff House.', key: true },
+  ],
+  6: [
+    { time: '9:00 AM', title: 'Breakfast in the villa', dur: '1h 30m' },
+    { time: '10:30 AM', title: 'Private pool, no agenda', dur: '2h 30m' },
+    { time: '1:00 PM', title: 'Six Senses Spa', dur: '2h 30m', note: 'Couples treatment plus the Alchemy Bar scrub blend', key: true },
+    { time: '4:00 PM', title: 'Cliff-edge cabana', dur: '2h 30m' },
+    { time: '6:30 PM', title: 'Cliff House', dur: '2h 30m', note: 'Book the terrace. Last Bali sunset.', key: true },
+    { time: '9:00 PM', title: 'Pack for Bangkok', dur: '45m' },
+  ],
+  7: [
+    { time: '8:00 AM', title: 'Breakfast, check out', dur: '1h 30m' },
+    { time: '9:30 AM', title: 'Hotel car to the airport', dur: '45m', kind: 'transit' },
+    { time: '10:15 AM', title: 'Denpasar', dur: '2h', key: true },
+    { time: '12:15 PM', title: 'Flight to Bangkok', dur: '4h 30m', note: 'Not yet booked, times approximate', key: true },
+    { time: '3:45 PM', title: 'Bangkok', dur: '45m', note: 'Visa-free on a US passport', key: true },
+    { time: '4:30 PM', title: 'Hotel car into the city', dur: '1h', kind: 'transit', note: 'Do not take a street taxi' },
+    { time: '5:30 PM', title: 'Mandarin Oriental · riverside', dur: '1h', key: true },
+    { time: '7:00 PM', title: 'The Bamboo Bar', dur: '1h 30m', note: 'Jazz since 1953', key: true },
+    { time: '8:30 PM', title: 'Dinner on the terrace', dur: '2h' },
+  ],
+  8: [
+    { time: '7:00 AM', title: 'Early breakfast', dur: '45m', note: 'Beat the heat. This is the whole strategy.' },
+    { time: '7:45 AM', title: 'Hotel boat, then tuk tuk', dur: '25m', kind: 'transit' },
+    { time: '8:15 AM', title: 'Grand Palace · Wat Phra Kaew', dur: '2h', note: 'Be there when the gates open', key: true },
+    { time: '10:15 AM', title: 'Walk next door', dur: '10m', kind: 'transit' },
+    { time: '10:30 AM', title: 'Wat Pho · Reclining Buddha', dur: '45m', key: true },
+    { time: '11:15 AM', title: 'Massage at the temple school', dur: '1h', note: 'Where Thai massage was codified · about $10' },
+    { time: '12:30 PM', title: 'Ferry across the river', dur: '15m', kind: 'transit' },
+    { time: '12:45 PM', title: 'Wat Arun', dur: '45m', key: true },
+    { time: '1:45 PM', title: 'Lunch nearby', dur: '1h 15m' },
+    { time: '3:15 PM', title: 'Back to the hotel', dur: '30m', kind: 'transit' },
+    { time: '3:45 PM', title: 'Pool, sit out peak heat', dur: '3h 15m' },
+    { time: '7:30 PM', title: 'Sorn, or Le Du', dur: '2h 30m', note: 'Sorn needs booking months ahead', key: true },
+  ],
+  9: [
+    { time: '8:00 AM', title: 'Breakfast', dur: '1h' },
+    { time: '9:15 AM', title: 'Walk to the pier', dur: '10m', kind: 'transit' },
+    { time: '9:30 AM', title: 'Thonburi klongs · private longtail', dur: '2h 30m', note: 'Stilt houses and temple docks, about $60/hr', key: true },
+    { time: '12:15 PM', title: 'Over to the cooking school', dur: '20m', kind: 'transit' },
+    { time: '12:35 PM', title: 'Blue Elephant · market and class', dur: '4h', note: 'You cook four dishes and eat them', key: true },
+    { time: '4:45 PM', title: 'Back to the hotel', dur: '30m', kind: 'transit' },
+    { time: '5:15 PM', title: 'Rest, shower', dur: '2h' },
+    { time: '7:15 PM', title: 'MRT to Chinatown', dur: '25m', kind: 'transit' },
+    { time: '7:45 PM', title: 'Yaowarat', dur: '3h', note: 'River prawns, oyster omelettes, mango sticky rice', key: true },
+  ],
+  10: [
+    { time: '9:00 AM', title: 'Breakfast', dur: '1h 15m' },
+    { time: '10:15 AM', title: 'Free hotel boat across the river', dur: '10m', kind: 'transit' },
+    { time: '10:30 AM', title: 'The Oriental Spa', dur: '2h 30m', note: 'Couples suite in a century-old teak house', key: true },
+    { time: '1:15 PM', title: 'Lunch', dur: '1h' },
+    { time: '2:30 PM', title: 'BTS across town', dur: '30m', kind: 'transit' },
+    { time: '3:00 PM', title: 'Jim Thompson House', dur: '1h 30m', note: 'He walked into a jungle in 1967 and vanished', key: true },
+    { time: '4:45 PM', title: 'Back to the hotel', dur: '30m', kind: 'transit' },
+    { time: '5:15 PM', title: 'Rest and change', dur: '1h 15m' },
+    { time: '6:45 PM', title: 'Over to the Banyan Tree', dur: '25m', kind: 'transit' },
+    { time: '7:00 PM', title: 'Vertigo · 61st floor', dur: '1h 30m', note: 'Open air, no shorts or sandals', key: true },
+    { time: '8:45 PM', title: 'Nahm, Paste, or Gaggan', dur: '2h 30m', key: true },
+  ],
+  11: [
+    { time: '9:00 AM', title: 'Breakfast', dur: '1h' },
+    { time: '10:15 AM', title: 'Out across the city', dur: '25m', kind: 'transit' },
+    { time: '10:40 AM', title: 'Chatuchak, or back to Yaowarat', dur: '3h', note: 'Last shot at anything you missed', key: true },
+    { time: '2:00 PM', title: 'Late checkout, bags to the concierge', dur: '45m', note: 'Ask at check-in. MO often gives 4pm.' },
+    { time: '3:00 PM', title: 'Long final meal', dur: '2h' },
+    { time: '5:15 PM', title: 'Hotel car to the airport', dur: '1h 30m', kind: 'transit', note: 'Traffic is unpredictable. Do not cut this close.' },
+    { time: '6:45 PM', title: 'Bangkok', dur: '2h 20m', key: true },
+    { time: '9:05 PM', title: 'Flight to Doha', dur: '6h 35m', key: true },
+  ],
+  12: [
+    { time: '11:40 PM', title: 'Doha', dur: '', note: 'Landed Friday night', key: true },
+    { time: '11:55 PM', title: 'Transfer security, walk to the gate', dur: '45m', kind: 'transit', note: '2h 10m connection. Tight but clean.' },
+    { time: '1:50 AM', title: 'Flight to Dallas', dur: '16h', note: 'The long one. Sleep.', key: true },
+    { time: '9:50 AM', title: 'Dallas Fort Worth', dur: '', key: true },
+    { time: '10:30 AM', title: 'Immigration, bags, curb', dur: '1h', kind: 'transit' },
+    { time: '11:30 AM', title: 'Home', dur: '', key: true },
+  ],
+};
+
+const legMeta = {
+  travel: { label: 'In Transit', accent: '#78716c', tint: '#f5f5f4' },
+  uluwatu: { label: 'Uluwatu', accent: '#c2410c', tint: '#fff7ed' },
+  bangkok: { label: 'Bangkok', accent: '#7e22ce', tint: '#faf5ff' },
+};
+
+const budgetData = {
+  categories: [
+    {
+      name: 'Flights',
+      estimate: 3220,
+      accent: '#78716c',
+      tint: '#f5f5f4',
+      items: [
+        {
+          label: 'Qatar open jaw · 2 pax · seats included',
+          cost: 2700,
+          bookBy: 'Booked · DFW→DPS 27 Apr, BKK→DFW 7 May',
+          booked: true,
+        },
+        {
+          label: 'Bali → Bangkok (2 pax, ~4.5 hr direct)',
+          cost: 400,
+          bookBy: 'Book ~Feb 2027 · Thai Airways or Garuda',
+        },
+        {
+          label: 'Doha layover: Oryx hotel or lounge (outbound)',
+          cost: 120,
+          bookBy: 'Book ~1 month out · 5h45m overnight gap',
+        },
+      ],
+      notes: 'Booked as one open-jaw ticket on Qatar metal throughout, so seat selection works on every segment, bags check through, and Qatar owns any misconnect. Both long legs are A350-1000s in 3-3-3 with better cabin pressure and humidity than older widebodies; the tighter 777-300ER sits on the shorter Bangkok segment, which is the right way round. UPGRADE BID: Qatar opens bidding after ticketing, typically a few weeks to a few days out. Set a reminder for roughly two months before departure and check Manage Booking. Bid on QR731 specifically, the 16-hour Doha to DFW leg, since that is where lie-flat is worth the most. Nothing is charged unless you win, mid-range bids clear more often than minimums, and one bid should cover both passengers on the same booking. Note that winning does not earn Qsuite-level miles, and once you win it is non-refundable.',
+    },
+    {
+      name: 'Lodging',
+      estimate: 6546,
+      accent: '#9a3412',
+      tint: '#fef3e8',
+      items: [
+        {
+          label: 'Six Senses Uluwatu · 4 nights · 1BR Cliff Pool Villa',
+          cost: 4546,
+          bookBy: 'Booked · 29 Apr – 3 May 2027',
+          booked: true,
+        },
+        {
+          label: 'Mandarin Oriental Bangkok · 4 nights (river view)',
+          cost: 2000,
+          bookBy: 'Book by Dec 2026 · 4–5 months out is safe',
+        },
+      ],
+      notes: 'Six Senses is confirmed for 29 Apr to 3 May and now matches the flights. Next step there is the honeymoon email against your confirmation: early check in, couples spa treatment, anniversary date on file. Mandarin Oriental Bangkok is the remaining booking, 3 May to 7 May. Call direct and mention the honeymoon, their service culture is famously personal and they typically arrange something. Request a river view room category specifically, city view is cheaper but the Chao Phraya is the entire point. Check Amex Fine Hotels + Resorts before booking direct.',
+    },
+    {
+      name: 'Food & Drink',
+      estimate: 2000,
+      accent: '#14532d',
+      tint: '#ecfdf5',
+      items: [
+        {
+          label: 'Bali, 4 days (~$120/day couple)',
+          cost: 480,
+          bookBy: 'Pay as you go',
+        },
+        {
+          label: 'Bangkok, 4 days (~$150/day couple)',
+          cost: 600,
+          bookBy: 'Pay as you go · street food is $2–5/dish',
+        },
+        {
+          label: 'Splurge dinners (Sorn, Gaggan, Cliff House, Le Du)',
+          cost: 920,
+          bookBy: 'Sorn/Gaggan need 2–3 months · others 2–4 weeks',
+        },
+      ],
+      notes: 'Bangkok is where your dollar really stretches. Street food at Yaowarat runs $2–5 per dish and is genuinely world-class. Mid-range sit-down restaurants are $15–25/person. Even the Michelin-starred tasting menus (Sorn, Le Du, Nahm) are $80–150/person — a fraction of the equivalent in Hong Kong or Tokyo. Sorn and Gaggan Anand are the two hardest reservations in Bangkok; book the moment the window opens (typically 2–3 months out, online).',
+    },
+    {
+      name: 'Activities & Experiences',
+      estimate: 2000,
+      accent: '#334155',
+      tint: '#f1f5f9',
+      items: [
+        {
+          label: 'Uluwatu Temple + Kecak Fire Dance (2 pax)',
+          cost: 60,
+          bookBy: 'Buy day-of · arrive 1hr early for front-row',
+        },
+        {
+          label: 'Sundays Beach Club day pass + cabana',
+          cost: 250,
+          bookBy: 'Reserve cabana 1 week ahead',
+        },
+        {
+          label: 'Six Senses spa treatments (couples)',
+          cost: 700,
+          bookBy: 'Book at check-in or 2 weeks ahead',
+        },
+        {
+          label: 'Grand Palace + Wat Pho + Wat Arun entries',
+          cost: 60,
+          bookBy: 'Walk-in · arrive by 8am to beat heat and crowds',
+        },
+        {
+          label: 'Private longtail boat, Thonburi klongs (2 hrs)',
+          cost: 120,
+          bookBy: 'Hotel concierge arranges · or negotiate at the pier',
+        },
+        {
+          label: 'Thai cooking class with market visit (2 pax)',
+          cost: 180,
+          bookBy: 'Book 1–2 weeks ahead',
+        },
+        {
+          label: 'Oriental Spa couples treatment',
+          cost: 400,
+          bookBy: 'Book 2–3 weeks ahead · very popular',
+        },
+        {
+          label: 'Jim Thompson House + misc entries',
+          cost: 40,
+          bookBy: 'Walk-in',
+        },
+        {
+          label: 'Rooftop bars (Vertigo, Sky Bar) + drinks',
+          cost: 150,
+          bookBy: 'Walk-in · dress code enforced, no shorts/sandals',
+        },
+        {
+          label: 'Misc experiences buffer',
+          cost: 40,
+          bookBy: 'As you go',
+        },
+      ],
+      notes: 'Bangkok activities are remarkably cheap. A temple-school Thai massage at Wat Pho is ~$10/hour. Grand Palace entry is ~$15. The private longtail boat through the canals is the single most underrated Bangkok experience — do it in the morning before the heat. Use the Mandarin Oriental concierge for everything; their team is famously good and can arrange private guides, boat charters, and restaurant bookings that are otherwise hard to get.',
+    },
+    {
+      name: 'In-country Transport',
+      estimate: 450,
+      accent: '#7c2d12',
+      tint: '#fef2f2',
+      items: [
+        {
+          label: 'Bali airport transfers (DPS ↔ Six Senses)',
+          cost: 120,
+          bookBy: 'Pre-arrange with the hotel',
+        },
+        {
+          label: 'Bali driver day (Uluwatu Temple + dinners)',
+          cost: 80,
+          bookBy: 'Hotel concierge arranges',
+        },
+        {
+          label: 'Bangkok airport transfers (BKK ↔ hotel)',
+          cost: 100,
+          bookBy: 'Pre-arrange hotel car · traffic is unpredictable',
+        },
+        {
+          label: 'Bangkok BTS/MRT + Grab rides + river ferries',
+          cost: 120,
+          bookBy: 'Pay as you go · everything is cheap',
+        },
+        {
+          label: 'Buffer',
+          cost: 30,
+          bookBy: 'As you go',
+        },
+      ],
+      notes: 'Do NOT rent a car in Bali or Bangkok — traffic in both is chaotic and driving is not worth it. In Bali use hotel-arranged drivers or Grab. In Bangkok, the BTS Skytrain and MRT are clean, cheap, air-conditioned, and skip the notorious traffic entirely. Grab (Southeast Asian Uber) is cheap for anything off the rail lines. The Chao Phraya river ferries are both practical transport and a genuine experience — the Mandarin Oriental has its own free shuttle boat.',
+    },
+  ],
+};
+
+const totalEstimate = budgetData.categories.reduce((sum, c) => sum + c.estimate, 0);
+const buffer = trip.budget - totalEstimate;
+const bookedTotal = budgetData.categories.reduce(
+  (sum, c) => sum + c.items.filter((i) => i.booked).reduce((s, i) => s + i.cost, 0),
+  0
+);
+
+function formatCurrency(n) {
+  return '$' + n.toLocaleString('en-US');
+}
+
+/* ==== RENDER ==== */
+var E=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+
+function schedHTML(items,accent,tint){
+  if(!items||!items.length)return'';
+  var h='<div class="sched"><div class="sched-l" style="color:'+accent+';opacity:.7">The Day</div>';
+  items.forEach(function(it,i){
+    var tr=it.kind==='transit';
+    var line=i<items.length-1?'<span class="row-line" style="background:'+accent+'22"></span>':'';
+    h+='<div class="row"><div class="row-t">';
+    if(!tr)h+='<div class="row-time" style="color:'+(it.key?accent:'#78716c')+';font-weight:'+(it.key?600:400)+'">'+E(it.time)+'</div>';
+    h+=line+'</div><div class="row-c'+(tr?' tr':'')+'">';
+    if(tr){
+      h+='<div class="tr-line"><span class="tr-t">&#8595; '+E(it.title)+'</span>';
+      if(it.dur)h+='<span class="tr-d">'+E(it.dur)+'</span>';
+      if(it.note)h+='<span class="tr-n">'+E(it.note)+'</span>';
+      h+='</div>';
+    }else{
+      h+='<div class="row-head"><div class="row-title" style="color:'+(it.key?'#1c1917':'#44403c')+';font-weight:'+(it.key?500:400)+'">'+E(it.title)+'</div>';
+      if(it.dur)h+='<div class="row-dur" style="background:'+(it.key?tint:'transparent')+';color:'+(it.key?accent:'#a8a29e')+'">'+E(it.dur)+'</div>';
+      h+='</div>';
+      if(it.note)h+='<div class="row-note">'+E(it.note)+'</div>';
+    }
+    h+='</div></div>';
+  });
+  return h+'</div>';
+}
+
+function photoHTML(key,accent,tint){
+  if(!key)return'';
+  var keys=Array.isArray(key)?key:[key],h='';
+  keys.forEach(function(k){
+    var p=photos[k];if(!p)return;
+    var bleed=p.contain?'':' bleed';
+    h+='<figure class="ph'+bleed+'"><div class="ph-box" style="aspect-ratio:'+(p.ratio||'1.6')+';background:'+(p.contain?tint:'transparent')+'">'
+      +'<img src="'+p.src+'" alt="'+E(p.caption||'')+'" loading="lazy" style="object-fit:'+(p.contain?'contain':'cover')+'"></div>';
+    if(p.caption)h+='<figcaption style="color:'+accent+';opacity:.7">'+E(p.caption)+'</figcaption>';
+    h+='</figure>';
+  });
+  return h;
+}
+
+function itineraryHTML(){
+  var secs=[],cur=null;
+  days.forEach(function(d){
+    if(!cur||cur.leg!==d.leg){cur={leg:d.leg,days:[d]};secs.push(cur);}else cur.days.push(d);
+  });
+  var h='<header class="hero wrap"><div class="eyebrow">An Asia Honeymoon Itinerary</div>'
+   +'<h1 class="title d">'+E(trip.title)+'</h1>'
+   +'<div class="dates d">'+E(trip.dates)+'</div>'
+   +'<div class="places">Uluwatu &middot; Bangkok</div></header>'
+   +'<section class="wrap"><div class="stats">'
+   +'<div class="stat"><div class="stat-v d">8</div><div class="stat-l">Hotel Nights</div></div>'
+   +'<div class="stat"><div class="stat-v d">2</div><div class="stat-l">Hotels</div></div>'
+   +'<div class="stat"><div class="stat-v d">2</div><div class="stat-l">Countries</div></div>'
+   +'</div></section><section class="wrap pb">';
+  secs.forEach(function(sec){
+    var m=legMeta[sec.leg];
+    var r=sec.days.length===1?sec.days[0].dateShort:sec.days[0].dateShort+' \u2013 '+sec.days[sec.days.length-1].dateShort;
+    h+='<div class="leg"><div class="leg-rule"><i style="background:'+m.accent+'55"></i><b style="background:'+m.accent+'"></b><i style="background:'+m.accent+'55"></i></div>'
+      +'<div class="leg-dates" style="color:'+m.accent+'">'+E(r)+'</div>'
+      +'<h2 class="leg-name d" style="color:'+m.accent+'">'+E(m.label)+'</h2></div>';
+    sec.days.forEach(function(d,i){
+      var last=i===sec.days.length-1;
+      h+='<article class="day'+(last?' last':'')+'">'
+        +'<div class="day-meta"><span class="day-n" style="color:'+m.accent+'">Day '+d.day+'</span><span class="dot">&middot;</span>'
+        +'<span class="day-date">'+E(d.dayName)+', '+E(d.dateShort)+'</span><span class="dot">&middot;</span>'
+        +'<span class="day-vibe">'+E(d.vibe)+'</span></div>'
+        +'<h3 class="day-h d">'+E(d.headline)+'</h3>'
+        +'<div class="day-loc">'+E(d.location)+'</div>'
+        +photoHTML(dayPhotos[d.day],m.accent,m.tint);
+      if(d.hotel){
+        h+='<div class="lodge" style="background:'+m.tint+'"><div class="lodge-l" style="color:'+m.accent+'">Lodging</div>'
+          +'<div class="lodge-n">'+E(d.hotel)+'</div>'
+          +(d.hotelNight?'<div class="lodge-x">'+E(d.hotelNight)+'</div>':'')+'</div>';
+      }
+      h+=schedHTML(schedules[d.day],m.accent,m.tint)
+        +'<p class="day-body">'+E(d.details)+'</p></article>';
+    });
+  });
+  return h+'<div class="fin">&mdash; fin &mdash;</div></section>';
+}
+
+function budgetHTML(){
+  var pct=(totalEstimate/trip.budget*100).toFixed(1);
+  var tight=buffer<1000,healthy=buffer>=3000;
+  var h='<header class="hero wrap"><div class="eyebrow">Estimated Spend &amp; Tracking</div>'
+   +'<h1 class="title d" style="font-size:52px">Budget</h1>'
+   +'<div class="dates d">Live estimates &middot; update as bookings firm up</div></header>'
+   +'<section class="wrap"><div class="kpis">'
+   +kpi('Total Budget',formatCurrency(trip.budget),'The ceiling','#78716c')
+   +kpi('Estimated Spend',formatCurrency(totalEstimate),pct+'% of budget','#78716c')
+   +kpi('Locked In',formatCurrency(bookedTotal),'Flights + Six Senses','#166534')
+   +kpi('Buffer',formatCurrency(buffer),tight?'Running tight':(healthy?'Comfortable':'OK'),healthy?'#166534':'#78716c',tight)
+   +'</div></section>';
+
+  h+='<section class="wrap"><div class="barwrap"><div class="bar-head"><div class="bar-lab">Where the money goes</div>'
+    +'<div class="bar-tot">'+formatCurrency(totalEstimate)+' / '+formatCurrency(trip.budget)+'</div></div><div class="bar">';
+  budgetData.categories.forEach(function(c){
+    h+='<div style="width:'+(c.estimate/trip.budget*100)+'%;background:'+c.accent+'" title="'+E(c.name)+'"></div>';
+  });
+  if(buffer>0)h+='<div style="width:'+(buffer/trip.budget*100)+'%;background:#e7e5e4"></div>';
+  h+='</div><div class="legend">';
+  budgetData.categories.forEach(function(c){
+    h+='<div class="lg"><i style="background:'+c.accent+'"></i><span>'+E(c.name)+' <em>'+(c.estimate/trip.budget*100).toFixed(0)+'%</em></span></div>';
+  });
+  h+='<div class="lg"><i style="background:#e7e5e4"></i><span>Buffer <em>'+(buffer/trip.budget*100).toFixed(0)+'%</em></span></div>';
+  h+='</div></div>';
+
+  if(healthy){
+    h+='<div class="callout" style="background:#ecfdf5;border-color:#166534">'
+      +'<div class="callout-l" style="color:#166534">Budget Note</div><p>You are sitting at '+formatCurrency(buffer)
+      +' of buffer on a '+formatCurrency(trip.budget)+' budget. Real room. Bangkok is where the dollar stretches hardest: '
+      +'Michelin tasting menus at $80 to $150 a head instead of $300, street food at $2 to $5 a dish. That buffer could fund '
+      +'a river suite at the Mandarin Oriental, a winning upgrade bid on the long leg home, or simply stay banked.</p></div>';
+  }
+
+  h+='<div class="eyebrow">Itemized &middot; what to book, when</div>'
+    +'<h2 class="cat-n" style="font-size:30px;margin-bottom:6px">The breakdown</h2>'
+    +'<div style="font-size:14px;color:#78716c;font-style:italic;margin-bottom:32px">Every category, every line. Cost on the right. Booking timing below.</div>';
+  budgetData.categories.forEach(function(c){
+    h+='<div class="cat"><div class="cat-head"><h3 class="cat-n" style="color:'+c.accent+'">'+E(c.name)+'</h3>'
+      +'<div class="cat-v">'+formatCurrency(c.estimate)+'</div></div>'
+      +'<div class="cat-pct">'+(c.estimate/trip.budget*100).toFixed(1)+'% of budget</div>';
+    c.items.forEach(function(it){
+      h+='<div class="item"><div class="item-head"><div class="item-l">'+E(it.label)+'</div>'
+        +'<div class="item-c">'+formatCurrency(it.cost)+'</div></div>';
+      if(it.bookBy){
+        h+='<div class="item-b">'+(it.booked?'<span class="badge">&#10003; Locked</span>':'')
+          +'<span class="item-when" style="color:'+(it.booked?'#166534':c.accent)+';opacity:'+(it.booked?1:.75)+'">'+E(it.bookBy)+'</span></div>';
+      }
+      h+='</div>';
+    });
+    if(c.notes)h+='<div class="notes" style="background:'+c.tint+';color:'+c.accent+'">'+E(c.notes)+'</div>';
+    h+='</div>';
+  });
+  h+='<footer>All figures are estimates based on current research, mid-tier room categories, and average couple spend. '
+    +'Hotel rates fluctuate; flight prices firm up 60 to 90 days before departure. Re-check after each booking and update the lines.</footer></section>';
+  return h;
+}
+
+function kpi(label,val,sub,color,danger){
+  return '<div class="kpi"><div class="kpi-v d" style="color:'+(danger?'#991b1b':'#1c1917')+'">'+val+'</div>'
+    +'<div class="kpi-s" style="color:'+color+'">'+E(sub)+'</div>'
+    +'<div class="kpi-l">'+E(label)+'</div></div>';
+}
+
+function show(tab){
+  document.getElementById('app').innerHTML = tab==='budget'?budgetHTML():itineraryHTML();
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('on',b.dataset.tab===tab)});
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tab').forEach(function(b){
+  b.addEventListener('click',function(){show(b.dataset.tab)});
+});
+show('itinerary');
+</script>
+</body>
+</html>
