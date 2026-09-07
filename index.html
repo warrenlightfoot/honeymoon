@@ -1337,5 +1337,22 @@ function downloadICS(){
 
 show((location.hash||'#itinerary').slice(1),false);
 </script>
+<script>
+// Auto refresh: reload when a newer index.html has been pushed. Checks on
+// launch, whenever the app returns to the foreground, and every 5 minutes.
+(function(){
+  var etag=null;
+  function check(){
+    fetch(location.pathname,{method:'HEAD',cache:'no-store'}).then(function(r){
+      var e=r.headers.get('etag')||r.headers.get('last-modified');
+      if(etag&&e&&e!==etag)location.reload();
+      etag=e;
+    }).catch(function(){});
+  }
+  check();
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)check()});
+  setInterval(check,5*60*1000);
+})();
+</script>
 </body>
 </html>
